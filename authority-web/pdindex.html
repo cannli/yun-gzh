@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成长云</title>
+
+
+</head>
+<body>
+<div id="auth"></div>
+<div id="isbindPhone"></div>
+</body>
+<Script language="javascript" type="text/javascript">
+    //http://health.junlz.com/bghealth/wx/pdindex.html?Authorization=eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyYTllOTIyNy1iNjliLTQ5MmYtODQ0MS0xYTQzZjA3OWI0ZDQiLCJpYXQiOjE1MzQ2NTIzMzYsInN1YiI6IntcIm5pY2tOYW1lXCI6XCLmmq7kupFcIixcInNleFwiOlwiMVwiLFwiaWRcIjo2OTEsXCJ1c2VyVHlwZVwiOlwiMVwifSIsImV4cCI6MTUzNDY5NTUzNn0.jguN-0Mgpu67J_5G6CzVtMStcT4PvHG3dqs_MNmzYBM&isbindPhone=false
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        var json = {};
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+
+            for (var i = 0; i < strs.length; i++) {
+                var arrayStr = strs[i].split("=")
+                json[arrayStr[0]] = arrayStr[1];
+            }
+        }
+        window.localStorage.setItem('tokenId', json["Authorization"])
+        window.location.href = 'http://health.junlz.com/bghealth/wx/index.html';
+
+        // document.getElementById("auth").innerHTML=json["Authorization"]
+        //  document.getElementById("isbindPhone").innerHTML=json["isbindPhone"]
+          return theRequest;
+    };
+    GetRequest();
+</Script>
+</html>

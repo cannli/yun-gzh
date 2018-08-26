@@ -1,0 +1,151 @@
+.page {
+  // position: absolute;
+  // left: 0;
+  // right: 0;
+  // top: 0;
+  // bottom: 0;
+  // overflow: hidden;
+  width: 100%;
+  position: relative;
+  padding-bottom: 20px;
+  font-family: '微软雅黑';
+  min-height: 100%;
+  .page-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: transparent;
+    overflow: auto;
+    // touch-action: none;                 // prevent default touch action
+    -webkit-overflow-scrolling: touch; // scroll effect optimize in safari
+  }
+  .content {
+    padding: 20px;
+  }
+  .contenter{
+    padding: 0;
+  }
+
+}
+.copyright {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 15px;
+  color: #ddd;
+  font-size: 12px;
+  text-align: center;
+}
+.page-part{
+  margin-bottom: 15px;
+}
+
+/* 个人中心头部 */
+.cell {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: inherit;
+    min-height: 48px;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    .cell-wrapper {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      box-sizing: border-box;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      font-size: 16px;
+      line-height: 1;
+      min-height: inherit;
+      overflow: hidden;
+      padding: 0 5px;
+      margin-top:0;
+      width: 100%;
+    }
+    .cell-left {
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+    }
+    .cell-center {
+      -webkit-box-flex: 5;
+      -ms-flex: 5;
+      flex: 5;
+      margin-left: 20px;
+      margin-right: 20px;
+      h3{
+          margin-bottom: 20px;
+      }
+      p{
+          color: #ccc;
+      }
+    }
+    .cell-right {
+      color: #009EE0;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+  }
+
+
+
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
+  display: block;
+  font-weight: 300;
+  font-size: 100px;
+  color: #35495e;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+
+.links {
+  padding-top: 15px;
+}
+
+.btns {
+  display: flex;
+  margin-bottom: 15px;
+  a {
+    flex: 1;
+    margin: 0 20px;
+    button{
+        display:block;
+        width:100%;
+    }
+  }
+}
+.btnsn{
+  margin-bottom: 15px;
+  button {
+    margin: 0 20px;
+    width: calc(100% - 40px);
+  }
+}
+
