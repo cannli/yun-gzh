@@ -21,7 +21,7 @@ import Mint from 'mint-ui'
 
 Vue.use(Mint);
 //import 'mint-ui/lib/style.css'
-window.projectRootUrl = 'http://health.junlz.com/bghealth/api'
+window.projectRootUrl = 'http://www.egrowth.cn/api'
 
 
 Vue.use(api)

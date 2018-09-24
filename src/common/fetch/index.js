@@ -34,8 +34,8 @@ export default function fetch(options) {
         'X-Requested-With': 'XMLHttpRequest',
         'Content-Type': 'application/json',
         'Accept': 'application/json,text/plain,*/*',
-        'userType': 1
-       // 'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiZWI5ODA2NC1mZGEyLTRmMWItYTQ2YS1mOTBjNGIwZTE2ZjMiLCJpYXQiOjE1MzQ2NjMwNzEsInN1YiI6IntcIm5pY2tOYW1lXCI6XCJhYm9cIixcInNleFwiOlwiMVwiLFwibmFtZVwiOlwiYWJvXCIsXCJpZFwiOjY4MCxcInVzZXJUeXBlXCI6XCIxXCIsXCJ1c2VyTmFtZVwiOlwiYWJvXCJ9IiwiZXhwIjoxNTM0NzA2MjcxfQ.3Tt0MtrzlniQayC-RuK39QIco7PvaUg5rCBVE2XbFvE'
+        'userType': 1,
+       // 'Authorization': 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIwMjIzNjFlOS1iMTUxLTQ3N2EtYTI5NS04MDYwZTViZGRkMjQiLCJpYXQiOjE1MzU4NjQyOTIsInN1YiI6IntcImhlYWRJbWdcIjpcImh0dHA6Ly90aGlyZHd4LnFsb2dvLmNuL21tb3Blbi92aV8zMi9pYUh4cTU3UVhka0lMeFNlNFBTbnVEMFc4blJIRDNHbUQ3ZUc3NW1YeGlhdXI1SnVKUGdSVmljMFQ3TE03V1ZRSHdJUGZmSGdMdmJ3Y3RVeXlpY0pxdGtoSmcvMTMyXCIsXCJuaWNrTmFtZVwiOlwiYWJvXCIsXCJzZXhcIjpcIjFcIixcIm5hbWVcIjpcImFib1wiLFwiaWRcIjo2ODAsXCJ1c2VyVHlwZVwiOlwiMVwiLFwidXNlck5hbWVcIjpcImFib1wifSIsImV4cCI6MTUzNTkwNzQ5Mn0.wMP0XQ3tD1jl6aT2At6bBIeESQR-gjZr_105iae7ZkY'
       }
     })
     instance.interceptors.request.use(options => {

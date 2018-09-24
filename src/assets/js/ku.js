@@ -121,78 +121,6 @@ exports.install = function (Vue, options) {
     return null
   }
 
-  Vue.prototype.projectState = function (n) {
-    if (n == null || n == undefined) {
-      return '无'
-    }
-    switch (n * 1) {
-      case 1:
-        return '项目立项'
-      case 2:
-        return '历史数据评估'
-      case 3:
-        return '资产池建立'
-      case 4:
-        return '资产包封包'
-      case 5:
-        return '产品发行'
-      case 6:
-        return '存续期结束'
-      default:
-        return '无'
-    }
-  }
-
-  // 历史数据导入的状态
-  Vue.prototype.fileStateHistory = function (n) {
-    if (n == null || n == undefined) {
-      return '无'
-    }
-    switch (n * 1) {
-      case 1:
-        return '校验中'
-      case 2:
-        return '已校验'
-      case 3:
-        return '评估中'
-      case 4:
-        return '已评估'
-      case 5:
-        return '已完成'
-      case 6:
-        return '已放弃'
-      case 7:
-        return '评估失败'
-      default:
-        return '无'
-    }
-  }
-
-  // 资产池导入的状态
-  Vue.prototype.fileStateAsserts = function (n) {
-    if (n == null || n == undefined) {
-      return '无'
-    }
-    switch (n * 1) {
-      case 1:
-        return '校验中'
-      case 2:
-        return '已校验'
-      case 3:
-        return '评估中'
-      case 4:
-        return '已评估'
-      case 5:
-        return '已入池'
-      case 6:
-        return '已放弃'
-      case 7:
-        return '评估失败'
-      default:
-        return '无'
-    }
-  }
-
   // rate 传1就会保留2位小数
   Vue.prototype.isNull = function (str, rate) {
     var isRate = rate == 1 ? true : false
@@ -206,7 +134,13 @@ exports.install = function (Vue, options) {
       }
     }
   }
-
+  Vue.prototype.isNullIs = function (str) {
+    if (str == null || str == undefined || str == '') {
+      return 1
+    } else {
+      return str
+    }
+  }
   // 今天时间
   Vue.prototype.getNowFormatDate = function () {
     var date = new Date()

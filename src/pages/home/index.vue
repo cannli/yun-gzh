@@ -16,10 +16,8 @@
         <router-link to="/addBaby">
           <mt-button type="primary">添加宝贝</mt-button>
         </router-link>
-
       </div>
     </copy-right>
-
   </div>
 </template>
 
@@ -51,8 +49,8 @@
       return this.$seo('我的宝贝')
     },
     created() {
-        let obj = window.localStorage.getItem('tokenId')
-      //let obj = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiMGNjY2U0OS00YzRmLTQzMTItOTYyMC1kY2VjMDdlOGMyYTMiLCJpYXQiOjE1MzQ5MTc3ODQsInN1YiI6IntcImhlYWRJbWdcIjpcImh0dHA6Ly90aGlyZHd4LnFsb2dvLmNuL21tb3Blbi92aV8zMi9pYUh4cTU3UVhka0lMeFNlNFBTbnVEMFc4blJIRDNHbUQ3ZUc3NW1YeGlhdXI1SnVKUGdSVmljMFQ3TE03V1ZRSHdJUGZmSGdMdmJ3Y3RVeXlpY0pxdGtoSmcvMTMyXCIsXCJuaWNrTmFtZVwiOlwiYWJvXCIsXCJzZXhcIjpcIjFcIixcIm5hbWVcIjpcImFib1wiLFwiaWRcIjo2ODAsXCJ1c2VyVHlwZVwiOlwiMVwiLFwidXNlck5hbWVcIjpcImFib1wifSIsImV4cCI6MTUzNDk2MDk4NH0.v5C93CJxmwUlZjy7wxrWEvmqy2UAG_3iyYurLCODco8'
+      let obj = window.localStorage.getItem('tokenId')
+     // let obj = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiNGMyNTE2OS0xY2QwLTQ3ZTktOWE4Ny1mNzFhY2ZjMDdmN2MiLCJpYXQiOjE1Mzc1NDQ4NDMsInN1YiI6IntcImhlYWRJbWdcIjpcImh0dHA6Ly90aGlyZHd4LnFsb2dvLmNuL21tb3Blbi92aV8zMi8yNGdNeWlibWdTbzJuUFM1eExycUdzVFRXb2lhN1BZaWNpYk1pYzd4eWM2ZnBpYTEzNTZOQW05WVQ4YURJN2VUQU5IVzlpY2s1a3czMXZpY3ZzaE5pYlZyWWE4SGdMdy8xMzJcIixcIm5pY2tOYW1lXCI6XCLmmq7kupFcIixcInNleFwiOlwiMVwiLFwiaWRcIjo2OTEsXCJ1c2VyVHlwZVwiOlwiMVwifSIsImV4cCI6MTUzNzU4ODA0M30.iOVofrZqdGMQhfBkRSzOzdC2oIhBmy2uhNMLy_BWb5A'
       this.set_user_info({
         user: obj,
         //  login: obj.isbindPhone
@@ -71,12 +69,12 @@
       getBabyInfo() {
         let self = this
         let params = {}
-        this.$fetch.dataApi.getBabyInfo(params).then(({data, msg, total}) => {
+        self.$fetch.dataApi.getBabyInfo(params).then(({data, msg, total}) => {
           self.babyList = data.childrenList;
           self.parent = data.userInfo;
           self.$indicator.close()
         }).catch(() => {
-          this.$indicator.close()
+          self.$indicator.close()
         })
       },
       babyManage() {

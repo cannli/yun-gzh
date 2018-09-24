@@ -6,11 +6,11 @@
         <router-link to="/">
           <mt-button icon="back" style="border:none;background:none;box-shadow:none;"></mt-button>
         </router-link>
-        <a class="mint-tab-item" @click="tab(false)">
+        <a class="mint-tab-item" @click="tabFn(false)">
           <div class="mint-tab-item-icon"></div>
-          <div class="mint-tab-item-label">成长刻度（4）</div>
+          <div class="mint-tab-item-label">成长刻度{{studentExamList.length>0? '('+ studentExamList.length+')':''}}</div>
         </a>
-        <a class="mint-tab-item" @click="tab(true)">
+        <a class="mint-tab-item" @click="tabFn(true)">
           <div class="mint-tab-item-icon"></div>
           <div class="mint-tab-item-label">成长轨迹</div>
         </a>
@@ -20,42 +20,59 @@
       <mt-tab-container class="tabbody" :class="[isSwipe ? 'move':'']">
         <mt-tab-container-item id="1">
           <div class="pic">
-            <img src="../assets/images/timg.jpg" style="width:100%;max-height:375px" alt="">
+            <img src="../assets/images/bj2.jpg" style="width:100%;max-height:375px" alt="">
           </div>
 
           <div class="box4">
             <div class="cell">
               <div class="cell-wrapper">
                 <div class="cell-left">
-                  <div class="name">王小丽</div>
-                  <div class="birthday">2009/09/13</div>
+                  <div class="name">{{dataObj.name}}</div>
+                  <div class="birthday">{{dataObj.birth}}</div>
                 </div>
                 <div class="cell-right">
-                  <img src="../assets/images/xl.jpg" width="68" height="68">
+                  <!-- <img src="../assets/images/xl.jpg" width="68" height="68">-->
+                  <div class="image_upload">
+                    <vue-core-image-upload
+                      :crop="false"
+                      @imageuploaded="imageuploaded"
+                      input-of-file="file"
+                      inputAccept="image/*"
+                      :max-file-size="5242880"
+                      :url="uploadUrl"
+                      :isXhr="true"
+                      :data="{studentId:babyId,imageType:1}"
+                      :headers="headers">
+                      <img :src="dataObj.imgUrl" style="width: 68px;height: 68px; border-radius: 50%;"/>
+                    </vue-core-image-upload>
+                    <img src="../assets/images/xj.png" class="xj-icon"/>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <router-link class="item" v-for="n in 8" :key="n" to="/info" style="display:block;">
+            <router-link class="item" v-for="(x,index) in studentExamList" :key="index"
+                         :to="{path:'/info',query:{id:babyId, custCode:x.custCode}}"
+                         style="display:block;">
 
               <div class="item-left">
-                <span>第4次评估</span>
-                <span>排名
-                                    <i>03</i>
-                                </span>
+                <span>{{x.indexA}}</span>
+                <span>
+                  排名
+                  <i>{{x.ranking}}</i>
+                </span>
               </div>
               <div class="item-center">
-                <span style="width:80%;"></span>
+                <span :style="{width: x.score+'%'}"></span>
               </div>
               <div class="item-right">
-                评估时间：2018/04/18
+                评估时间：{{x.createTime}}
               </div>
             </router-link>
           </div>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
           <!-- 成长轨迹 -->
-          <growth-trail></growth-trail>
+          <growth-trail :babyId="babyId" :dataObj="dataObj" v-if="isSwipe"></growth-trail>
         </mt-tab-container-item>
       </mt-tab-container>
 
@@ -68,32 +85,90 @@
 <script>
   // import Fallback from '~/components/fallback.vue'
   // import CopyRight from '~/components/copy-right.vue'
+  import VueCoreImageUpload from 'vue-core-image-upload'
   import GrowthTrail from 'components/growth-trail.vue'
 
   export default {
     data() {
       return {
+
+        headers: {},
+        uploadUrl: window.projectRootUrl + '/weChat/uploadImg.do',
+        babyId: '',
         selected: '1',
-        isSwipe: false
+        isSwipe: false,
+        dataObj: {
+          name: '',
+          birth: '',
+          sex: '',
+          imgUrl: require('../assets/images/xl.jpg'),
+        },
+        studentExamList: []
+
       }
     },
     components: {
       // Fallback,
       // CopyRight,
+      VueCoreImageUpload,
       GrowthTrail
     },
     head() {
       return this.$seo('宝贝信息')
     },
+    created() {
+      this.babyId = this.$route.query.id
+    },
+    mounted() {
+      this.$nextTick(() => {
+        this.getStudentExamList(this.babyId)
+        this.headers = {Authorization: this.$store.state.user_info.user, userType: 1}
+      })
+    },
     methods: {
+      imageuploaded(res) {
+        console.log(res)
+        if (res.code == 200) {
+          this.dataObj.imgUrl = res.data.fileName;
+        } else {
+          Toast({
+            message: data.msg,
+          })
+        }
+      },
+      //根据小孩ID获取小孩体检的次数
+      getStudentExamList(id) {
+        let self = this
+        let params = {
+          childId: id
+        }
+        self.$fetch.dataApi.getStudentExamList(params).then(({data, msg, total}) => {
+          self.dataObj = {
+            name: data.student.username,
+            birth: data.student.birth,
+            sex: data.student.sex == 1 ? '男' : data.student.sex == 2 ? '女' : '-',
+            imgUrl: data.student.headImg ? data.student.headImg : '../assets/images/xl.jpg'
+          }
+          for (let x in data.list) {
+            self.studentExamList.push({
+              score: data.list[x].score,
+              indexA: '第' + data.list[x].index + '次评估',
+              createTime: data.list[x].createTime,
+              ranking: data.list[x].ranking,
+              custCode: data.list[x].custCode
+            })
+          }
+        }).catch(() => {
+          self.$indicator.close()
+        })
+      },
       goback() {
         this.$router.go(-1)
       },
       info() {
         this.$router.push('/info')
       },
-      tab(val) {
-        console.log(val)
+      tabFn(val) {
         if (val) {
           this.isSwipe = true
         } else {
@@ -103,8 +178,26 @@
     }
   }
 </script>
+<style scoped lang="scss" type="text/scss" rel="stylesheet/scss">
 
-<style lang="scss" scoped>
+  .image_upload {
+    text-align: center;
+    width: 100%;
+    /* height: 150px;*/
+    position: relative;
+    /*  top: 70px;
+      margin-bottom: 50px;*/
+    display: inline-block;
+    right: 5px;
+    .xj-icon{
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      top: 41px;
+      right:-10px;
+    }
+  }
+
   .mint-cell-wrapper,
   .mint-cell:last-child {
     background-image: none;
@@ -115,7 +208,7 @@
   }
 
   .box4 {
-    margin-top: -108px;
+    margin-top: -30px;
     margin-left: 20px;
     margin-right: 20px;
     background: #fff;
@@ -127,7 +220,7 @@
   .cell {
     background: rgba(0, 158, 224, 1);
     border-radius: 4px 4px 0px 0px;
-    padding: 20px 10px;
+    padding: 5px 10px;
     margin-top: 0;
     .cell-wrapper {
       margin-top: 0;
@@ -170,7 +263,7 @@
 
   .item {
     background: #fff;
-    padding: 10px 15px;
+    padding: 1px 15px;
     .item-left {
       display: flex;
       span {

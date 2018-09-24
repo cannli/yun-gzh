@@ -1,32 +1,32 @@
 <template>
   <div class="growth-trail">
     <div class="pic">
-      <img src="../assets/images/timg.jpg" style="width:100%;max-height:375px" alt="">
+      <img src="../assets/images/bj2.jpg" style="width:100%;max-height:375px" alt="">
     </div>
 
     <div class="box3">
       <div class="cell">
         <div class="cell-wrapper">
           <div class="cell-left">
-            <div class="name">王小丽</div>
-            <div class="birthday">2009/09/13</div>
+            <div class="name">{{dataObj.name}}</div>
+            <div class="birthday">{{dataObj.birth}}</div>
           </div>
           <div class="cell-right">
-            <img src="../assets/images/xl.jpg" width="68" height="68">
+            <img :src="dataObj.imgUrl" width="68" height="68">
           </div>
         </div>
       </div>
       <div class="fix">
         <div>
-          <h3>女</h3>
+          <h3>{{dataObj.sex}}</h3>
           <p>性别</p>
         </div>
+        <!-- <div>
+           <h3>8</h3>
+           <p>年龄</p>
+         </div>-->
         <div>
-          <h3>8</h3>
-          <p>年龄</p>
-        </div>
-        <div>
-          <h3>0407</h3>
+          <h3>{{babyId}}</h3>
           <p>编号</p>
         </div>
       </div>
@@ -123,13 +123,13 @@
                     <div class="tab-swiper vux-center">
                       <div style="text-align:center;position:relative;" class="ttjcfx">
                         <img :src="item.val" alt="" style="width:100%;height:500px;">
-                        <span>轻度头侧歪</span>
-                        <span>轻度头前倾</span>
-                        <span>中度驼背</span>
-                        <span>骨盘后倾</span>
-                        <span>无高低肩</span>
-                        <span>躯干轻度偏移</span>
-                        <span>腿型正常</span>
+                        <span>头侧歪:{{item.shape.headCoronalMain}}</span>
+                        <span>头前倾:{{item.shape.headForeMain}}</span>
+                        <span>驼背:{{item.shape.humpBackMain}}</span>
+                        <span>骨盘:{{item.shape.pelvisPitchMain}}</span>
+                        <span>肩:{{item.shape.shoulderCoronalMain}}</span>
+                        <span>躯干:{{item.shape.bodyCenterMain}}</span>
+                        <span>腿型:{{item.shape.legXoMain}}</span>
                       </div>
                     </div>
                   </swiper-item>
@@ -202,53 +202,26 @@
       VeBar,
       VeLine
     },
+    props: {
+      babyId: [Number, String],
+      dataObj: [Object]
+    },
     created: function () {
-      this.heightData = {
-        columns: ['次数', '身高'],
-        rows: [
-          {身高: 115, 次数: '第一次'},
-          {身高: 125, 次数: '第二次'},
-          {身高: 132, 次数: '第三次'},
-          {身高: 147, 次数: '第四次'},
-          {身高: 157, 次数: '第五次'}
-        ]
-      }
       this.heightSettings = {
         dimension: ['次数']
       }
 
-      this.riskData = {
-        columns: ['状况', '第一次', '第二次', '第三次'],
-        rows: [
-          {状况: '腰痛', 第一次: 20, 第二次: 20, 第三次: 30},
-          {状况: '头晕', 第一次: 10, 第二次: 10, 第三次: 20},
-          {状况: '头痛', 第一次: 10, 第二次: 20, 第三次: 30},
-          {状况: '手脚麻', 第一次: 10, 第二次: 20, 第三次: 30},
-          {状况: '颈椎硬化', 第一次: 10, 第二次: 20, 第三次: 30},
-          {状况: '颈肩痛', 第一次: 10, 第二次: 20, 第三次: 30},
-          {状况: '骨刺', 第一次: 10, 第二次: 20, 第三次: 30},
-          {状况: '便秘', 第一次: 20, 第二次: 40, 第三次: 20},
-          {状况: '背痛', 第一次: 10, 第二次: 20, 第三次: 30},
-          {状况: '耳鸣', 第一次: 10, 第二次: 20, 第三次: 10},
-          {状况: '脊柱变形', 第一次: 10, 第二次: 10, 第三次: 30},
-          {状况: '慢性劳损', 第一次: 10, 第二次: 20, 第三次: 20},
-          {状况: '腰椎间盘突出', 第一次: 10, 第二次: 20, 第三次: 30},
-          {状况: '身体疲惫', 第一次: 40, 第二次: 40, 第三次: 30},
-          {状况: '膝关节痛', 第一次: 10, 第二次: 10, 第三次: 23},
-          {状况: '眼睛干涩', 第一次: 20, 第二次: 20, 第三次: 30},
-          {状况: '失眠', 第一次: 10, 第二次: 30, 第三次: 30},
-          {状况: '胸闷气短', 第一次: 10, 第二次: 20, 第三次: 30}
-        ]
-      }
-      this.riskSettings = {
-        metrics: ['第一次', '第二次', '第三次']
-      }
     },
     data() {
       return {
-        list2: ['第一次', '第二次', '第三次', '第四次', '第五次'],
+        riskSettings: {
+          metrics: ['第一次评估', '第二次评估']
+        },
+        // list2: ['第一次评估', '第二次评估', '第三次', '第四次', '第五次'],
+        riskData: {},
+        shape: [],
         index: 0,
-        demo2: '第一次',
+        demo2: '第一次评估',
         // 导航配置
         navList: [
           {
@@ -268,58 +241,18 @@
             name: '风险预测'
           }
         ],
+        heightData: {},
         weightData: {
           columns: ['次数', '体重'],
           rows: [
-            {体重: 22, 次数: '第一次'},
-            {体重: 28, 次数: '第二次'},
+            {体重: 22, 次数: '第一次评估'},
+            {体重: 28, 次数: '第二次评估'},
             {体重: 24, 次数: '第三次'},
             {体重: 20, 次数: '第四次'},
             {体重: 16, 次数: '第五次'}
           ]
         },
-        titai: [
-          {
-            key: '第一次',
-            val: require('../../static/images/tt.png')
-          },
-          {
-            key: '第二次',
-            val: require('../../static/images/tt.png')
-          },
-          {
-            key: '第三次',
-            val: require('../../static/images/tt.png')
-          },
-          {
-            key: '第四次',
-            val: require('../../static/images/tt.png')
-          },
-          {
-            key: '第五次',
-            val: require('../../static/images/tt.png')
-          },
-          {
-            key: '第六次',
-            val: require('../../static/images/tt.png')
-          },
-          {
-            key: '第七次',
-            val: require('../../static/images/tt.png')
-          },
-          {
-            key: '第八次',
-            val: require('../../static/images/tt.png')
-          },
-          {
-            key: '第九次',
-            val: require('../../static/images/tt.png')
-          },
-          {
-            key: '第十次',
-            val: require('../../static/images/tt.png')
-          }
-        ],
+        titai: [],
         extend: {
           series: {
             label: {
@@ -328,10 +261,179 @@
               }
             }
           }
+        },
+      }
+    },
+    methods: {
+      // 身高
+      heightTrail() {
+        let self = this
+        let params = {
+          studentId: self.babyId
+        }
+        self.$fetch.dataApi.heightTrail(params).then(({data, msg, total}) => {
+          let rows = []
+          if (data && data.length > 0) {
+            for (let x in data) {
+              rows.push({
+                身高: data[x].height, 次数: data[x].checkTime,
+              })
+            }
+            self.heightData = {columns: ['次数', '身高'], rows}
+          }
+        })
+      },
+      // 体重
+      weightTrail() {
+        let self = this
+        let params = {
+          studentId: self.babyId
+        }
+        self.$fetch.dataApi.weightTrail(params).then(({data, msg, total}) => {
+          let rows = []
+          if (data && data.length > 0) {
+            for (let x in data) {
+              rows.push({
+                体重: data[x].weight, 次数: data[x].checkTime,
+              })
+            }
+            self.weightData = {columns: ['次数', '体重'], rows}
+          }
+        })
+      },
+      // 获取人体数据
+      shapeTrail() {
+        let self = this
+        let params = {
+          studentId: self.babyId
+        }
+        self.$fetch.dataApi.shapeTrail(params).then(({data, msg, total}) => {
+          if (data && data.length > 0) {
+            let num = 0
+            for (let x in data) {
+              num++
+              self.titai.push(
+                {
+                  key: '第' + num + '次评估',
+                  val: require('../../static/images/tt.png'),
+                  shape: {
+                    bodyCenterMain: data[x].bodyCenter,
+                    headCoronalMain: data[x].headCoronal,
+                    headForeMain: data[x].headFore,
+                    humpBackMain: data[x].humpBack,
+                    legXoMain: data[x].legXo,
+                    pelvisPitchMain: data[x].pelvisPitch,
+                    shoulderCoronalMain: data[x].shoulderCorenal,
+                  }
+                }
+              )
+            }
+          }
+        })
+      },
+      //  风险
+      riskTrail() {
+        let self = this
+        let params = {
+          studentId: self.babyId
+        }
+        self.$fetch.dataApi.riskTrail(params).then(({data, msg, total}) => {
+          let xAxisData = ['颈椎退化', '骨刺', '头痛', '头晕', '手脚麻', '便秘',
+            '颈肩痛', '背痛', '腰痛', '腰椎间盘突出', '膝关节痛', '胸闷气短',
+            '失眠', '脊柱变形', '慢性劳损', '眼睛干涩', '身体疲倦', '耳鸣']
+
+          /* data[x].lumbago, data[x].dizzy, data[x].headache,
+             data[x].hemp, data[x].cervicalDege, data[x].nsPain,
+             data[x].spur, data[x].constipation, data[x].backache, data[x].ringEar,
+             data[x].deforeSpine, data[x].chronicStrain, data[x].lumbaDisk,
+             data[x].physicalFatigue, data[x].kjPain, data[x].dryEye, data[x].insomnia,
+             data[x].shortBreath*/
+          /*   riskSettings: {
+           metrics: ['第一次评估', '第二次评估']
+         },*/
+          let metrics = []
+          let columns = ['状况']
+          if (data && data.length > 0) {
+            for (let x in data) {
+              metrics.push('第' + self.hanziFn(x) + '次评估')
+              columns.push('第' + self.hanziFn(x) + '次评估')
+            }
+          }
+          self.riskSettings = {metrics}
+          if (data.length == 1) {
+            self.riskData = {
+              columns,
+              rows: [
+                {状况: '颈椎退化', 第一次评估: data[0].lumbago},
+                {状况: '骨刺', 第一次评估: data[0].dizzy},
+                {状况: '头痛', 第一次评估: data[0].headache},
+                {状况: '头晕', 第一次评估: data[0].hemp},
+                {状况: '手脚麻', 第一次评估: data[0].cervicalDege},
+                {状况: '便秘', 第一次评估: data[0].nsPain},
+
+                {状况: '颈肩痛', 第一次评估: data[0].spur},
+                {状况: '背痛', 第一次评估: data[0].constipation},
+                {状况: '腰痛', 第一次评估: data[0].backache},
+                {状况: '腰椎间盘突出', 第一次评估: data[0].ringEar},
+                {状况: '膝关节痛', 第一次评估: data[0].deforeSpine},
+                {状况: '胸闷气短', 第一次评估: data[0].chronicStrain},
+
+                {状况: '失眠', 第一次评估: data[0].lumbaDisk},
+                {状况: '脊柱变形', 第一次评估: data[0].physicalFatigue},
+                {状况: '慢性劳损', 第一次评估: data[0].kjPain},
+                {状况: '眼睛干涩', 第一次评估: data[0].dryEye},
+                {状况: '身体疲倦', 第一次评估: data[0].insomnia},
+                {状况: '耳鸣', 第一次评估: data[0].shortBreath}
+              ]
+            }
+          } else if (data.length == 2) {
+            self.riskData = {
+              columns,
+              rows: [
+                {状况: '颈椎退化', 第一次评估: data[0].lumbago, 第二次评估: data[1].lumbago, 第三次: 30},
+                {状况: '骨刺', 第一次评估: data[0].dizzy, 第二次评估: data[1].dizzy, 第三次: 20},
+                {状况: '头痛', 第一次评估: data[0].headache, 第二次评估: data[1].headache, 第三次: 30},
+                {状况: '头晕', 第一次评估: data[0].hemp, 第二次评估: data[1].hemp, 第三次: 30},
+                {状况: '手脚麻', 第一次评估: data[0].cervicalDege, 第二次评估: data[1].cervicalDege, 第三次: 30},
+                {状况: '便秘', 第一次评估: data[0].nsPain, 第二次评估: data[1].nsPain, 第三次: 30},
+
+                {状况: '颈肩痛', 第一次评估: data[0].spur, 第二次评估: data[1].spur, 第三次: 30},
+                {状况: '背痛', 第一次评估: data[0].constipation, 第二次评估: data[1].constipation, 第三次: 20},
+                {状况: '腰痛', 第一次评估: data[0].backache, 第二次评估: data[1].backache, 第三次: 30},
+                {状况: '腰椎间盘突出', 第一次评估: data[0].ringEar, 第二次评估: data[1].ringEar, 第三次: 10},
+                {状况: '膝关节痛', 第一次评估: data[0].deforeSpine, 第二次评估: data[1].deforeSpine, 第三次: 30},
+                {状况: '胸闷气短', 第一次评估: data[0].chronicStrain, 第二次评估: data[1].chronicStrain, 第三次: 20},
+
+                {状况: '失眠', 第一次评估: data[0].lumbaDisk, 第二次评估: data[1].lumbaDisk, 第三次: 30},
+                {状况: '脊柱变形', 第一次评估: data[0].physicalFatigue, 第二次评估: data[1].physicalFatigue, 第三次: 30},
+                {状况: '慢性劳损', 第一次评估: data[0].kjPain, 第二次评估: data[1].kjPain, 第三次: 23},
+                {状况: '眼睛干涩', 第一次评估: data[0].dryEye, 第二次评估: data[1].dryEye, 第三次: 30},
+                {状况: '身体疲倦', 第一次评估: data[0].insomnia, 第二次评估: data[1].insomnia, 第三次: 30},
+                {状况: '耳鸣', 第一次评估: data[0].shortBreath, 第二次评估: data[1].shortBreath, 第三次: 30}
+              ]
+            }
+          }
+        })
+      },
+      hanziFn(n) {
+        switch (n * 1) {
+          case 0:
+            return '一'
+          case 1:
+            return '二'
+          case 2:
+            return '三'
+          case 3:
+            return '四'
+          case 4:
+            return '五'
+          case 5:
+            return '六'
+          default:
+            return '无'
         }
       }
     },
-
     mounted() {
       var w = document.body.offsetWidth
       /**
@@ -398,11 +500,17 @@
           window.scrollTo(0, textChild1[self.index].offsetTop)
         }
       }
+      this.$nextTick(() => {
+        this.heightTrail()
+        this.weightTrail()
+        this.riskTrail()
+        this.shapeTrail()
+      })
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss" type="text/scss" rel="stylesheet/scss">
   .mint-cell-wrapper {
     background-image: none;
   }
@@ -532,7 +640,7 @@
   }
 
   .box3 {
-    margin-top: -108px;
+    margin-top: -30px;
     margin-left: 20px;
     margin-right: 20px;
     background: #fff;
@@ -548,7 +656,6 @@
       text-align: center;
       div {
         flex: 1;
-        padding: 15px 0;
         h3 {
           font-weight: bold;
           padding: 5px 0;
@@ -564,7 +671,7 @@
   .cell {
     background: rgba(0, 158, 224, 1);
     border-radius: 4px 4px 0px 0px;
-    padding: 20px 10px;
+    padding: 5px 10px;
     margin-top: 0;
     .cell-wrapper {
       margin-top: 0;

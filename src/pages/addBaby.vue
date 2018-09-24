@@ -17,7 +17,7 @@
                                                v-model="dataObj.types">
                                         <span class="mint-radio-core"></span>
                                     </span>
-                  <span class="mint-radio-label">父母手机号码</span>
+                  <span class="mint-radio-label">手机号码</span>
                 </label>
                 <label class="mint-radiolist-label">
                                     <span class="mint-radio">
@@ -25,7 +25,7 @@
                                                v-model="dataObj.types">
                                         <span class="mint-radio-core"></span>
                                     </span>
-                  <span class="mint-radio-label">宝贝证证件号</span>
+                  <span class="mint-radio-label">宝贝证件号</span>
                 </label>
 
                 <span class="mint-field-state is-default">

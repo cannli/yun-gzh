@@ -13,9 +13,9 @@ export default {
     return {};
   },
   mounted() {
-    console.log("winHeight", this.$store.state.winHeight);
-    console.log("bodyHeight", this.$store.state.bodyHeight);
-    console.log("status", this.$store.state.status);
+  //  console.log("winHeight", this.$store.state.winHeight);
+  //  console.log("bodyHeight", this.$store.state.bodyHeight);
+  //  console.log("status", this.$store.state.status);
   }
 };
 </script>
