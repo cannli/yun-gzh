@@ -71,77 +71,183 @@
       <!-- 基本数据分析 -->
       <div class="page-part">
         <mt-cell title="基本数据分析"></mt-cell>
-        <a class="mint-cell">
-          <!---->
-          <div class="mint-cell-wrapper">
-            <div class="mint-cell-title">
-              <!--综合得分-->
-              <div class="data-analysis">
-                <span class="title">身高</span>
-                <div class="value">
-                  <span>{{detail.height}}</span>厘米
-                </div>
-                <!--  <div class="height">
-                    <div class="blue">偏低</div>
-                    <div class="green">标准</div>
-                    <div class="yellow">偏高</div>
-                    <i style="left:41%"></i>
-                  </div>-->
+        <!-- <a class="mint-cell">
+           &lt;!&ndash;&ndash;&gt;
+           <div class="mint-cell-wrapper">
+             <div class="mint-cell-title">
+               &lt;!&ndash;综合得分&ndash;&gt;
+               <div class="data-analysis">
+                 <span class="title">身高</span>
+                 <div class="value">
+                   <span>{{detail.height}}</span>厘米
+                 </div>
+                 &lt;!&ndash;  <div class="height">
+                     <div class="blue">偏低</div>
+                     <div class="green">标准</div>
+                     <div class="yellow">偏高</div>
+                     <i style="left:41%"></i>
+                   </div>&ndash;&gt;
+               </div>
+               <div class="item-center">
+                 <span class="span1" :style="{width:  ((detail.height+50)/widthS)*100+'%'}"></span>
+               </div>
+               &lt;!&ndash;&ndash;&gt;
+             </div>
+             &lt;!&ndash;&ndash;&gt;
+           </div>
+         </a>-->
+        <div class="box-new">
+          <div class="content-box">
+            <div class="left">
+              <div class="top">
+                <div class="title">身高：</div>
+                <div class="data">{{detail.height}}CM</div>
               </div>
-              <div class="item-center">
-                <span class="span1" :style="{width:  ((detail.height+50)/widthS)*100+'%'}"></span>
-              </div>
-              <!---->
-            </div>
-            <!---->
-          </div>
-        </a>
-        <a class="mint-cell">
-          <!---->
-          <div class="mint-cell-wrapper">
-            <div class="mint-cell-title">
-              <!--综合得分-->
-              <div class="data-analysis">
-                <span class="title">体重</span>
-                <div class="value">
-                  <span>{{detail.weight}}</span>公斤
-                </div>
-                <!--<div class="height">
-                  <div class="purple">严重偏低</div>
-                  <div class="blue">偏低</div>
-                  <div class="green">标准</div>
-                  <div class="yellow">偏高</div>
-                  <div class="red">严重偏高</div>
-                  <i :style="{left: detail.weight/widthS}"></i>
+              <!--  <div class="bottom">
+                  <div class="pingJ">评价：</div>
+                  <span class="res">一般ryrtyrt斯特容易特</span>
                 </div>-->
-              </div>
-              <div class="item-center">
-                <span class="span2" :style="{width:  ((detail.weight+100)/widthS)*100+'%'}"></span>
-              </div>
-              <!---->
             </div>
-            <!---->
+            <div class="right">
+              <div class="result-box" :style="{left:leftFn(detail.hMin,detail.hMax,detail.height)}">
+                <div class="text">{{detail.height}}</div>
+                <div class="icon"></div>
+              </div>
+              <div class="item item1">
+                <div class="tip tip1"></div>
+                <div class="icon icon1"></div>
+                <div class="data data-min">{{detail.hMin}}</div>
+              </div>
+              <div class="item item2">
+                <div class="tip tip2"></div>
+                <div class="icon icon2"></div>
+                <div class="data data-center">{{detail.hAvg}}</div>
+              </div>
+              <div class="item item3">
+                <div class="tip tip3"></div>
+                <div class="icon icon3"></div>
+                <div class="data data-max">{{detail.hMax}}</div>
+              </div>
+            </div>
           </div>
-        </a>
-        <a class="mint-cell">
-          <!---->
-          <div class="mint-cell-wrapper">
-            <div class="mint-cell-title">
-              <!--综合得分-->
-              <div class="data-analysis">
-                <span class="title">BMI</span>
-                <div class="value">
-                  <span>{{detail.bmi}}</span>
+        </div>
+        <div class="box-new">
+          <div class="content-box">
+            <div class="left">
+              <div class="top">
+                <div class="title">BMI：</div>
+                <div class="data">{{detail.bmi}}</div>
+              </div>
+              <!--<div class="bottom">-->
+              <!--<div class="pingJ">评价：</div>-->
+              <!--<span class="res">一般</span>-->
+              <!--</div>-->
+            </div>
+            <div class="right">
+              <div class="result-box" :style="{left:leftFn(detail.bMin,detail.bMax,detail.bmi)}">
+                <div class="text">{{detail.bmi}}</div>
+                <div class="icon"></div>
+              </div>
+              <div class="item item1">
+                <div class="tip tip1"></div>
+                <div class="icon icon1"></div>
+                <div class="data data-min">{{detail.bMin}}</div>
+              </div>
+              <div class="item item2">
+                <div class="tip tip2"></div>
+                <div class="icon icon2"></div>
+                <div class="data data-center">{{detail.bAvg}}</div>
+              </div>
+              <div class="item item3">
+                <div class="tip tip3"></div>
+                <div class="icon icon3"></div>
+                <div class="data data-max">{{detail.bMax}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box-new">
+          <div class="content-box">
+            <div class="left">
+              <div class="top">
+                <div class="title">体重：</div>
+                <div class="data">{{detail.weight}}KG</div>
+              </div>
+              <!--<div class="bottom">-->
+              <!--<div class="pingJ">评价：</div>-->
+              <!--<span class="res">一般</span>-->
+              <!--</div>-->
+            </div>
+            <div class="right">
+              <div class="result-box" :style="{left:leftFn(detail.wMin,detail.wMax,detail.weight)}">
+                <div class="text">{{detail.weight}}</div>
+                <div class="icon"></div>
+              </div>
+              <div class="item item1">
+                <div class="tip tip1"></div>
+                <div class="icon icon1"></div>
+                <div class="data data-min">{{detail.wMin}}</div>
+              </div>
+              <div class="item item2">
+                <div class="tip tip2"></div>
+                <div class="icon icon2"></div>
+                <div class="data data-center">{{detail.wAvg}}</div>
+              </div>
+              <div class="item item3">
+                <div class="tip tip3"></div>
+                <div class="icon icon3"></div>
+                <div class="data data-max">{{detail.wMax}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <a class="mint-cell">
+           &lt;!&ndash;&ndash;&gt;
+           <div class="mint-cell-wrapper">
+             <div class="mint-cell-title">
+               &lt;!&ndash;综合得分&ndash;&gt;
+               <div class="data-analysis">
+                 <span class="title">体重</span>
+                 <div class="value">
+                   <span>{{detail.weight}}</span>公斤
+                 </div>
+                 &lt;!&ndash;<div class="height">
+                   <div class="purple">严重偏低</div>
+                   <div class="blue">偏低</div>
+                   <div class="green">标准</div>
+                   <div class="yellow">偏高</div>
+                   <div class="red">严重偏高</div>
+                   <i :style="{left: detail.weight/widthS}"></i>
+                 </div>&ndash;&gt;
+               </div>
+               <div class="item-center">
+                 <span class="span2" :style="{width:  ((detail.weight+100)/widthS)*100+'%'}"></span>
+               </div>
+               &lt;!&ndash;&ndash;&gt;
+             </div>
+             &lt;!&ndash;&ndash;&gt;
+           </div>
+         </a>-->
+        <!--  <a class="mint-cell">
+            &lt;!&ndash;&ndash;&gt;
+            <div class="mint-cell-wrapper">
+              <div class="mint-cell-title">
+                &lt;!&ndash;综合得分&ndash;&gt;
+                <div class="data-analysis">
+                  <span class="title">BMI</span>
+                  <div class="value">
+                    <span>{{detail.bmi}}</span>
+                  </div>
                 </div>
+                <div class="item-center">
+                  <span :style="{width:  ((detail.bmi+150)/widthS)*100+'%'}"></span>
+                </div>
+                &lt;!&ndash;&ndash;&gt;
               </div>
-              <div class="item-center">
-                <span :style="{width:  ((detail.bmi+150)/widthS)*100+'%'}"></span>
-              </div>
-              <!---->
+              &lt;!&ndash;&ndash;&gt;
             </div>
-            <!---->
-          </div>
-        </a>
+          </a>-->
       </div>
 
       <!-- 体态检测分析 -->
@@ -150,7 +256,7 @@
 
         <a class="mint-cell">
           <!---->
-          <div style="text-align:center;position:relative;" class="ttjcfx">
+          <div style="text-align:center;position:relative;" class="ttjcfx borderSty">
             <img src="../../static/images/tt.png" alt="" style="width:100%;height:500px;">
             <span>头侧歪:{{shape.headCoronalMain}}</span>
             <span>头前倾:{{shape.headForeMain}}</span>
@@ -165,25 +271,27 @@
               <!--综合得分-->
               <div class="test">
                 <div class="title">身体姿态评估</div>
-                <div class="cont flex" id="flex1" style="margin-top: 20px;">
-                  <div v-for="(item,n) in pgData" :key="n" @click="chooseThis(item)">
-                    <img :src="item.val" alt=""></div>
+                <div class="borderSty">
+                  <div class="cont flex" id="flex1" style="margin-top: 20px;">
+                    <div v-for="(item,n) in pgData" :key="n" @click="chooseThis(item)">
+                      <img :src="item.val" alt=""></div>
+                  </div>
+                  <div class="cont" v-for="(x , index) in mainContent" style="padding: 10px;">
+                    <div class="black-bold">{{x.name}}</div>
+                    <p class="">{{x.mContent}}</p>
+                  </div>
                 </div>
-                <div class="cont" v-for="(x , index) in mainContent">
-                  <div class="black-bold">{{x.name}}</div>
-                  <p>{{x.mContent}}</p>
-                </div>
-
                 <div class="title">3D骨骼及肌筋膜状况</div>
-                <div class="cont flex" id="flex2" style="margin-top: 20px;">
-                  <div v-for="(item,n) in pgData1" :key="n" @click="chooseThis2(item)">
-                    <img :src="item.val" alt=""></div>
+                <div class="borderSty">
+                  <div class="cont flex" id="flex2" style="margin-top: 20px;">
+                    <div v-for="(item,n) in pgData1" :key="n" @click="chooseThis2(item)">
+                      <img :src="item.val" alt=""></div>
+                  </div>
+                  <div class="cont hui" v-for="x in pgData2" style="padding: 10px;">
+                    <h4 style="font-weight: bold;color: #333333;">{{x.name}}</h4>
+                    <p style="font-size: 14px;">{{x.mContent}}</p>
+                  </div>
                 </div>
-                <div class="cont hui" v-for="x in pgData2">
-                  <h4 style="font-weight: bold;color: #333333;">{{x.name}}</h4>
-                  <p style="font-size: 14px;">{{x.mContent}}</p>
-                </div>
-
               </div>
               <!---->
             </div>
@@ -194,7 +302,7 @@
       <!-- 风险预测 -->
       <div class="page-part">
         <mt-cell title="风险预测"></mt-cell>
-        <a class="mint-cell">
+        <a class="mint-cell borderSty">
           <div class="mint-cell-left"></div>
           <div class="mint-cell-wrapper">
             <div class="mint-cell-title">
@@ -584,6 +692,32 @@
       })
     },
     methods: {
+      // 根据最大值最小值求出left
+      leftFn(num1, num2, num3) {
+        let min = Number(num1)
+        let max = Number(num2)
+        if (max <= min) return
+        let a = ((max - min) / 6).toFixed(2)  // 平均值
+        let b = 16.66
+        let d = 8.33
+        for (let x = 0; x < 6; x++) {
+          let c = min + (a * x)
+          if (c >= num3) {
+            if (x === 0) {
+              return '0%'
+              break
+            }
+            if (x === 6) {
+              return '94%'
+              break
+            }
+            //  let e = b * x - d
+            return b * x - d + '%'
+            break
+          }
+        }
+
+      },
       showFn() {
         this.isLoading = false
       },
@@ -603,7 +737,20 @@
             weight: data.weight.weight,
             bmi: data.bmi.bmiNum,
             examNum: data.studentExam.examNum,
-            headImg: data.student.headImg ? data.student.headImg : '../assets/images/xl.jpg'
+            headImg: data.student.headImg ? data.student.headImg : '../assets/images/xl.jpg',
+            // weight
+            wMin: data.weight.min,
+            wMax: data.weight.max,
+            wAvg: data.weight.avg,
+            // height
+            hMin: data.height.min,
+            hMax: data.height.max,
+            hAvg: data.height.avg,
+            // bmi
+            bMin: data.bmi.min,
+            bMax: data.bmi.max,
+            bAvg: self.isNull(data.bmi.avg, 1),
+
           }
           self.shape = {
             bodyCenterMain: data.studentExamRecord.bodyCenterMain,
@@ -718,6 +865,10 @@
 </script>
 
 <style scoped lang="scss" type="text/scss" rel="stylesheet/scss">
+  .borderSty {
+    border: 1px dashed #000000;
+  }
+
   .article_list {
     background-color: #fff;
     h1 {
@@ -823,7 +974,7 @@
     /* margin-bottom: 20px;*/
     border-radius: 10px;
     margin: 10px;
-    background: #cccccc;
+    //  background: #cccccc;
     .cell-df {
       margin-top: 15px;
       padding: 20px;
@@ -848,6 +999,7 @@
     }
     .mint-cell-wrapper,
     .mint-cell:last-child {
+      padding: 0;
       background-image: none;
     }
   }
@@ -994,7 +1146,7 @@
       font-weight: bold;
     }
     .cont {
-      margin-top: 25px;
+      //   margin-top: 25px;
       &.hui {
         color: #8a8a8a;
         font-weight: normal;
@@ -1087,6 +1239,7 @@
 
   .baseData {
     padding: 20px 0;
+    border-radius: 5px;
     li {
       height: 50px;
       line-height: 50px;
@@ -1326,4 +1479,125 @@
       }
     }
   }
+
+  .box-new {
+    .content-box {
+      display: flex;
+      flex-flow: nowrap;
+      width: 100%;
+      //   height: 100px;
+      border: 1px dashed #000000;
+      border-radius: 5px;
+      padding: 30px 10px 10px 10px;
+      margin-bottom: 10px;
+      .left {
+        flex: 1;
+        //    background: #ffc107;
+        display: flex;
+        flex-flow: nowrap;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 12px;
+        .top {
+          flex: 1;
+          display: flex;
+          flex-flow: nowrap;
+          justify-content: center;
+          padding-bottom: 20px;
+          .title {
+            flex: 1;
+            font-size: 14px;
+            margin: auto auto;
+          }
+          .data {
+            flex: 1;
+            margin: auto auto;
+            color: #00cc00;
+          }
+        }
+        .bottom {
+          flex: 1;
+          div {
+            display: inline-block;
+          }
+          .res {
+            color: #00cc00;
+            overflow: hidden;
+          }
+        }
+
+      }
+      .right {
+        flex: 2;
+        display: flex;
+        flex-flow: nowrap;
+        align-self: center;
+        position: relative;
+        padding-left: 10px;
+        .result-box {
+          position: absolute;
+          top: -25px;
+          left: 20%;
+          text-align: center;
+          .icon {
+            display: inline-block;
+            border-style: solid;
+            border-width: 8px 8px 8px 8px;
+            border-color: blue transparent transparent transparent;
+            width: 0;
+            height: 0;
+          }
+          .text {
+            font-size: 12px;
+            color: #00cc00;
+          }
+        }
+        .item1 {
+          text-align: left;
+        }
+        .item2 {
+          text-align: center;
+        }
+        .item3 {
+          text-align: right;
+        }
+        .item {
+          flex: 1;
+          // text-align: center;
+          .icon {
+            position: relative;
+            top: -5px;
+            display: inline-block;
+            border-style: solid;
+            border-width: 5px 5px 5px 5px;
+            border-color: transparent transparent blue transparent;
+            width: 0;
+            height: 0;
+          }
+          .icon1 {
+            left: 10px;
+          }
+          .icon3 {
+            right: 10px;
+          }
+          .data {
+            font-size: 12px;
+          }
+          .tip1 {
+            height: 5px;
+            background: #ffc107;
+          }
+          .tip2 {
+            height: 5px;
+            background: #00cc00;
+          }
+          .tip3 {
+            height: 5px;
+            background: #0089dc;
+          }
+        }
+      }
+    }
+  }
+
 </style>

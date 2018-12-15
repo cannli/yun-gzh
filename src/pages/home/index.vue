@@ -49,8 +49,8 @@
       return this.$seo('我的宝贝')
     },
     created() {
-      let obj = window.localStorage.getItem('tokenId')
-     // let obj = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiNGMyNTE2OS0xY2QwLTQ3ZTktOWE4Ny1mNzFhY2ZjMDdmN2MiLCJpYXQiOjE1Mzc1NDQ4NDMsInN1YiI6IntcImhlYWRJbWdcIjpcImh0dHA6Ly90aGlyZHd4LnFsb2dvLmNuL21tb3Blbi92aV8zMi8yNGdNeWlibWdTbzJuUFM1eExycUdzVFRXb2lhN1BZaWNpYk1pYzd4eWM2ZnBpYTEzNTZOQW05WVQ4YURJN2VUQU5IVzlpY2s1a3czMXZpY3ZzaE5pYlZyWWE4SGdMdy8xMzJcIixcIm5pY2tOYW1lXCI6XCLmmq7kupFcIixcInNleFwiOlwiMVwiLFwiaWRcIjo2OTEsXCJ1c2VyVHlwZVwiOlwiMVwifSIsImV4cCI6MTUzNzU4ODA0M30.iOVofrZqdGMQhfBkRSzOzdC2oIhBmy2uhNMLy_BWb5A'
+     let obj = window.localStorage.getItem('tokenId')
+    //  let obj = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiNTJjYjJkZS1mZTkyLTQ1NmQtOWFlYi1iMDViOGY3ZWNhMmEiLCJpYXQiOjE1NDQ4NTA4NzksInN1YiI6IntcImhlYWRJbWdcIjpcImh0dHA6Ly90aGlyZHd4LnFsb2dvLmNuL21tb3Blbi92aV8zMi8yNGdNeWlibWdTbzJuUFM1eExycUdzVFRXb2lhN1BZaWNpYk1pYzd4eWM2ZnBpYTEzNTZOQW05WVQ4YURJN2VUQU5IVzlpY2s1a3czMXZpY3ZzaE5pYlZyWWE4SGdMdy8xMzJcIixcIm5pY2tOYW1lXCI6XCLmmq7kupFcIixcInNleFwiOlwiMVwiLFwiaWRcIjo2OTEsXCJ1c2VyVHlwZVwiOlwiMVwifSIsImV4cCI6MTU0NDg5NDA3OX0.QDpJbe0Cvf-D4HH4QGBPXbM-pn9NiMEyXMkPWyoiyOE'
       this.set_user_info({
         user: obj,
         //  login: obj.isbindPhone
