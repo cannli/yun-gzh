@@ -70,7 +70,10 @@
 
       <!-- 基本数据分析 -->
       <div class="page-part">
-        <mt-cell title="基本数据分析"></mt-cell>
+        <div class="titleBox">
+         基本数据分析
+        </div>
+
         <!-- <a class="mint-cell">
            &lt;!&ndash;&ndash;&gt;
            <div class="mint-cell-wrapper">
@@ -252,11 +255,13 @@
 
       <!-- 体态检测分析 -->
       <div class="page-part">
-        <mt-cell title="体态检测分析"></mt-cell>
-
+      <!--  <mt-cell title="体态检测分析"></mt-cell>-->
+        <div class="titleBox">
+          体态检测分析
+        </div>
         <a class="mint-cell">
           <!---->
-          <div style="text-align:center;position:relative;" class="ttjcfx borderSty">
+          <div style="text-align:center;position:relative;" class="ttjcfx">
             <img src="../../static/images/tt.png" alt="" style="width:100%;height:500px;">
             <span>头侧歪:{{shape.headCoronalMain}}</span>
             <span>头前倾:{{shape.headForeMain}}</span>
@@ -271,25 +276,41 @@
               <!--综合得分-->
               <div class="test">
                 <div class="title">身体姿态评估</div>
-                <div class="borderSty">
-                  <div class="cont flex" id="flex1" style="margin-top: 20px;">
+                <div class="">
+                  <div class="cont flex" id="flex1" style="margin-top: 15px; margin-bottom: 15px;">
                     <div v-for="(item,n) in pgData" :key="n" @click="chooseThis(item)">
                       <img :src="item.val" alt=""></div>
                   </div>
-                  <div class="cont" v-for="(x , index) in mainContent" style="padding: 10px;">
-                    <div class="black-bold">{{x.name}}</div>
-                    <p class="">{{x.mContent}}</p>
+                  <!-- <div class="cont" v-for="(x , index) in mainContent" style="padding: 10px;">
+                     <div class="black-bold">{{x.name}}</div>
+                     <p class="">{{x.mContent}}</p>
+                   </div>-->
+                  <div class="matBox" v-for="(x , index) in mainContent">
+                    <div class="tip1">
+                      <div class="bot">{{x.name}}</div>
+                    </div>
+                    <div class="tip2">
+                      {{x.mContent}}
+                    </div>
                   </div>
                 </div>
                 <div class="title">3D骨骼及肌筋膜状况</div>
-                <div class="borderSty">
-                  <div class="cont flex" id="flex2" style="margin-top: 20px;">
+                <div class="">
+                  <div class="cont flex" id="flex2" style="margin-top: 15px; margin-bottom: 15px;">
                     <div v-for="(item,n) in pgData1" :key="n" @click="chooseThis2(item)">
                       <img :src="item.val" alt=""></div>
                   </div>
-                  <div class="cont hui" v-for="x in pgData2" style="padding: 10px;">
-                    <h4 style="font-weight: bold;color: #333333;">{{x.name}}</h4>
-                    <p style="font-size: 14px;">{{x.mContent}}</p>
+                  <!--  <div class="cont hui" v-for="x in pgData2" style="padding: 10px;">
+                      <h4 style="font-weight: bold;color: #333333;">{{x.name}}</h4>
+                      <p style="font-size: 14px;">{{x.mContent}}</p>
+                    </div>-->
+                  <div class="matBox" v-for="x in pgData2">
+                    <div class="tip1">
+                      <div class="bot">{{x.name}}</div>
+                    </div>
+                    <div class="tip2">
+                      {{x.mContent}}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -301,8 +322,11 @@
       </div>
       <!-- 风险预测 -->
       <div class="page-part">
-        <mt-cell title="风险预测"></mt-cell>
-        <a class="mint-cell borderSty">
+        <!--<mt-cell title="风险预测"></mt-cell>-->
+        <div class="titleBox">
+          风险预测
+        </div>
+        <a class="mint-cell">
           <div class="mint-cell-left"></div>
           <div class="mint-cell-wrapper">
             <div class="mint-cell-title">
@@ -975,6 +999,17 @@
     border-radius: 10px;
     margin: 10px;
     //  background: #cccccc;
+    .titleBox{
+      color: #ffffff;
+      font-size: 16px;
+      margin-top: 15px;
+      font-weight: bold;
+      background: #0089dc;
+      line-height: 40px;
+      border-radius: 20px 20px 0 0;
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
     .cell-df {
       margin-top: 15px;
       padding: 20px;
@@ -1140,22 +1175,16 @@
     line-height: 28px;
     // padding-bottom: 20px;
     .title {
-      color: #000;
-      font-size: 18px;
-      margin-top: 25px;
+      color: #ffffff;
+      font-size: 16px;
+      margin-top: 15px;
       font-weight: bold;
+      background: #0089dc;
+      line-height: 40px;
+      border-radius: 20px 20px 0 0;
+      padding-left: 20px;
     }
     .cont {
-      //   margin-top: 25px;
-      &.hui {
-        color: #8a8a8a;
-        font-weight: normal;
-      }
-      p {
-        margin-bottom: 10px;
-        color: #8a8a8a;
-        font-weight: normal;
-      }
       &.flex {
         display: flex;
         margin-top: 0;
@@ -1176,6 +1205,33 @@
       .black-bold {
         color: #000;
         /* font-weight: bold;*/
+      }
+    }
+    .matBox:first-child {
+      margin-top: 10px;
+    }
+    .matBox {
+      margin-bottom: 15px;
+      .tip1 {
+        height: 34px;
+        background: #66c1ff;
+        border-radius: 20px 20px 0 0; //0 20px 0 20px;
+        text-align: center;
+        .bot {
+          display: inline-block;
+          border-radius: 20px 0 20px 0;
+          font-size: 14px;
+          padding: 3px 25px;
+          background: #ffc107;
+        }
+      }
+      .tip2 {
+        background: #eaeaea;
+        border-radius: 0 0 20px 20px;
+        font-size: 12px;
+        color: #5a5a5a;
+        padding: 10px;
+        line-height: 20px;
       }
     }
   }
@@ -1486,7 +1542,7 @@
       flex-flow: nowrap;
       width: 100%;
       //   height: 100px;
-      border: 1px dashed #000000;
+     // border: 1px dashed #000000;
       border-radius: 5px;
       padding: 30px 10px 10px 10px;
       margin-bottom: 10px;

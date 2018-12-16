@@ -50,7 +50,7 @@
     },
     created() {
      let obj = window.localStorage.getItem('tokenId')
-    //  let obj = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJiNTJjYjJkZS1mZTkyLTQ1NmQtOWFlYi1iMDViOGY3ZWNhMmEiLCJpYXQiOjE1NDQ4NTA4NzksInN1YiI6IntcImhlYWRJbWdcIjpcImh0dHA6Ly90aGlyZHd4LnFsb2dvLmNuL21tb3Blbi92aV8zMi8yNGdNeWlibWdTbzJuUFM1eExycUdzVFRXb2lhN1BZaWNpYk1pYzd4eWM2ZnBpYTEzNTZOQW05WVQ4YURJN2VUQU5IVzlpY2s1a3czMXZpY3ZzaE5pYlZyWWE4SGdMdy8xMzJcIixcIm5pY2tOYW1lXCI6XCLmmq7kupFcIixcInNleFwiOlwiMVwiLFwiaWRcIjo2OTEsXCJ1c2VyVHlwZVwiOlwiMVwifSIsImV4cCI6MTU0NDg5NDA3OX0.QDpJbe0Cvf-D4HH4QGBPXbM-pn9NiMEyXMkPWyoiyOE'
+   //   let obj = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5YjA1ZmVkNS00NmI0LTQwZjItOTRjNi0xMGRkYTM3MmFkYmQiLCJpYXQiOjE1NDQ5NTU0MDIsInN1YiI6IntcImhlYWRJbWdcIjpcImh0dHA6Ly90aGlyZHd4LnFsb2dvLmNuL21tb3Blbi92aV8zMi9RMGo0VHdHVGZUSXZQaWI2YXhQb1pwbHhOS1NHbExZa29QbDgwd2lhdkw5SUJXaWNZN3BpY3J3TlFNZUt1ZDNwR1NxTEp6cG4xSTVwTzBTNGxDbmlickdpY2lhMVEvMTMyXCIsXCJuaWNrTmFtZVwiOlwi6IOh5bCa5aWOXCIsXCJzZXhcIjpcIjFcIixcImlkXCI6NzAyLFwidXNlclR5cGVcIjpcIjFcIn0iLCJleHAiOjE1NDQ5OTg2MDJ9.1ADreMUsi6O_Ru85OlW-LrjuMriERzv_eBJjASYBGWw'
       this.set_user_info({
         user: obj,
         //  login: obj.isbindPhone
