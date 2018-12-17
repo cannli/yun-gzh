@@ -36,42 +36,10 @@
     </div>
 
     <div class="cntent-box" id="text">
-      <!-- <div class="page-part">
-  <div class="info-header">
-    <div class="middle">
-      <img src="../assets/images/100x100.png" width="68" height="68">
-      <h2>王小丽</h2>
-      <div>性别：女 | 年龄：7 | 编号：0407</div>
-      <p>阳光小学 / 四年级二班</p>
-    </div>
-  </div>
-
-  <div class="cell-df">
-    <div>
-      <h3>综合得分76</h3>
-      <p>击败了50.28%</p>
-    </div>
-    <div>
-      <progress-circle :radius="radius" :percent="percent"></progress-circle>
-    </div>
-  </div>
-
-  <div class="cell-df">
-    <div>
-      <h3>检测排名 3109</h3>
-      <p>总人数 6310</p>
-    </div>
-    <div>
-      <progress-circle :radius="radius" :percent="percent2" :stroke="purple" class="fail"></progress-circle>
-    </div>
-  </div>
-
-</div> -->
-
       <!-- 基本数据分析 -->
-      <div class="page-part">
+      <div class="page-part" style="box-shadow: 0 0 10px 5px #ccc;">
         <div class="titleBox">
-         基本数据分析
+          基本数据分析
         </div>
 
         <!-- <a class="mint-cell">
@@ -111,7 +79,7 @@
                   <span class="res">一般ryrtyrt斯特容易特</span>
                 </div>-->
             </div>
-            <div class="right">
+            <div class="right"><!--box-shadow: 0 0 10px 5px #ccc;-->
               <div class="result-box" :style="{left:leftFn(detail.hMin,detail.hMax,detail.height)}">
                 <div class="text">{{detail.height}}</div>
                 <div class="icon"></div>
@@ -120,16 +88,57 @@
                 <div class="tip tip1"></div>
                 <div class="icon icon1"></div>
                 <div class="data data-min">{{detail.hMin}}</div>
+                <div class="data data-min">同龄最小值</div>
               </div>
               <div class="item item2">
                 <div class="tip tip2"></div>
                 <div class="icon icon2"></div>
                 <div class="data data-center">{{detail.hAvg}}</div>
+                <div class="data data-center">同龄平均值</div>
               </div>
               <div class="item item3">
                 <div class="tip tip3"></div>
                 <div class="icon icon3"></div>
                 <div class="data data-max">{{detail.hMax}}</div>
+                <div class="data data-max">同龄最大值</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box-new">
+          <div class="content-box">
+            <div class="left">
+              <div class="top">
+                <div class="title">体重：</div>
+                <div class="data">{{detail.weight}}KG</div>
+              </div>
+              <!--<div class="bottom">-->
+              <!--<div class="pingJ">评价：</div>-->
+              <!--<span class="res">一般</span>-->
+              <!--</div>-->
+            </div>
+            <div class="right">
+              <div class="result-box" :style="{left:leftFn(detail.wMin,detail.wMax,detail.weight)}">
+                <div class="text">{{detail.weight}}</div>
+                <div class="icon"></div>
+              </div>
+              <div class="item item1">
+                <div class="tip tip1"></div>
+                <div class="icon icon1"></div>
+                <div class="data data-min">{{detail.wMin}}</div>
+                <div class="data data-min">同龄最小值</div>
+              </div>
+              <div class="item item2">
+                <div class="tip tip2"></div>
+                <div class="icon icon2"></div>
+                <div class="data data-center">{{detail.wAvg}}</div>
+                <div class="data data-center">同龄平均值</div>
+              </div>
+              <div class="item item3">
+                <div class="tip tip3"></div>
+                <div class="icon icon3"></div>
+                <div class="data data-max">{{detail.wMax}}</div>
+                <div class="data data-max">同龄最大值</div>
               </div>
             </div>
           </div>
@@ -155,173 +164,84 @@
                 <div class="tip tip1"></div>
                 <div class="icon icon1"></div>
                 <div class="data data-min">{{detail.bMin}}</div>
+                <div class="data data-min">同龄最小值</div>
               </div>
               <div class="item item2">
                 <div class="tip tip2"></div>
                 <div class="icon icon2"></div>
                 <div class="data data-center">{{detail.bAvg}}</div>
+                <div class="data data-center">同龄平均值</div>
               </div>
               <div class="item item3">
                 <div class="tip tip3"></div>
                 <div class="icon icon3"></div>
                 <div class="data data-max">{{detail.bMax}}</div>
+                <div class="data data-max">同龄最大值</div>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="box-new">
-          <div class="content-box">
-            <div class="left">
-              <div class="top">
-                <div class="title">体重：</div>
-                <div class="data">{{detail.weight}}KG</div>
-              </div>
-              <!--<div class="bottom">-->
-              <!--<div class="pingJ">评价：</div>-->
-              <!--<span class="res">一般</span>-->
-              <!--</div>-->
-            </div>
-            <div class="right">
-              <div class="result-box" :style="{left:leftFn(detail.wMin,detail.wMax,detail.weight)}">
-                <div class="text">{{detail.weight}}</div>
-                <div class="icon"></div>
-              </div>
-              <div class="item item1">
-                <div class="tip tip1"></div>
-                <div class="icon icon1"></div>
-                <div class="data data-min">{{detail.wMin}}</div>
-              </div>
-              <div class="item item2">
-                <div class="tip tip2"></div>
-                <div class="icon icon2"></div>
-                <div class="data data-center">{{detail.wAvg}}</div>
-              </div>
-              <div class="item item3">
-                <div class="tip tip3"></div>
-                <div class="icon icon3"></div>
-                <div class="data data-max">{{detail.wMax}}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <a class="mint-cell">
-           &lt;!&ndash;&ndash;&gt;
-           <div class="mint-cell-wrapper">
-             <div class="mint-cell-title">
-               &lt;!&ndash;综合得分&ndash;&gt;
-               <div class="data-analysis">
-                 <span class="title">体重</span>
-                 <div class="value">
-                   <span>{{detail.weight}}</span>公斤
-                 </div>
-                 &lt;!&ndash;<div class="height">
-                   <div class="purple">严重偏低</div>
-                   <div class="blue">偏低</div>
-                   <div class="green">标准</div>
-                   <div class="yellow">偏高</div>
-                   <div class="red">严重偏高</div>
-                   <i :style="{left: detail.weight/widthS}"></i>
-                 </div>&ndash;&gt;
-               </div>
-               <div class="item-center">
-                 <span class="span2" :style="{width:  ((detail.weight+100)/widthS)*100+'%'}"></span>
-               </div>
-               &lt;!&ndash;&ndash;&gt;
-             </div>
-             &lt;!&ndash;&ndash;&gt;
-           </div>
-         </a>-->
-        <!--  <a class="mint-cell">
-            &lt;!&ndash;&ndash;&gt;
-            <div class="mint-cell-wrapper">
-              <div class="mint-cell-title">
-                &lt;!&ndash;综合得分&ndash;&gt;
-                <div class="data-analysis">
-                  <span class="title">BMI</span>
-                  <div class="value">
-                    <span>{{detail.bmi}}</span>
-                  </div>
-                </div>
-                <div class="item-center">
-                  <span :style="{width:  ((detail.bmi+150)/widthS)*100+'%'}"></span>
-                </div>
-                &lt;!&ndash;&ndash;&gt;
-              </div>
-              &lt;!&ndash;&ndash;&gt;
-            </div>
-          </a>-->
       </div>
 
       <!-- 体态检测分析 -->
       <div class="page-part">
-      <!--  <mt-cell title="体态检测分析"></mt-cell>-->
+        <!--  <mt-cell title="体态检测分析"></mt-cell>-->
         <div class="titleBox">
           体态检测分析
         </div>
-        <a class="mint-cell">
-          <!---->
-          <div style="text-align:center;position:relative;" class="ttjcfx">
-            <img src="../../static/images/tt.png" alt="" style="width:100%;height:500px;">
-            <span>头侧歪:{{shape.headCoronalMain}}</span>
-            <span>头前倾:{{shape.headForeMain}}</span>
-            <span>驼背:{{shape.humpBackMain}}</span>
-            <span>骨盆:{{shape.pelvisPitchMain}}</span>
-            <span>肩:{{shape.shoulderCoronalMain}}</span>
-            <span>躯干:{{shape.bodyCenterMain}}</span>
-            <span>腿型:{{shape.legXoMain}}</span>
-          </div>
-          <div class="mint-cell-wrapper">
-            <div class="mint-cell-title">
-              <!--综合得分-->
-              <div class="test">
-                <div class="title">身体姿态评估</div>
-                <div class="">
-                  <div class="cont flex" id="flex1" style="margin-top: 15px; margin-bottom: 15px;">
-                    <div v-for="(item,n) in pgData" :key="n" @click="chooseThis(item)">
-                      <img :src="item.val" alt=""></div>
-                  </div>
-                  <!-- <div class="cont" v-for="(x , index) in mainContent" style="padding: 10px;">
-                     <div class="black-bold">{{x.name}}</div>
-                     <p class="">{{x.mContent}}</p>
-                   </div>-->
-                  <div class="matBox" v-for="(x , index) in mainContent">
-                    <div class="tip1">
-                      <div class="bot">{{x.name}}</div>
-                    </div>
-                    <div class="tip2">
-                      {{x.mContent}}
-                    </div>
-                  </div>
-                </div>
-                <div class="title">3D骨骼及肌筋膜状况</div>
-                <div class="">
-                  <div class="cont flex" id="flex2" style="margin-top: 15px; margin-bottom: 15px;">
-                    <div v-for="(item,n) in pgData1" :key="n" @click="chooseThis2(item)">
-                      <img :src="item.val" alt=""></div>
-                  </div>
-                  <!--  <div class="cont hui" v-for="x in pgData2" style="padding: 10px;">
-                      <h4 style="font-weight: bold;color: #333333;">{{x.name}}</h4>
-                      <p style="font-size: 14px;">{{x.mContent}}</p>
-                    </div>-->
-                  <div class="matBox" v-for="x in pgData2">
-                    <div class="tip1">
-                      <div class="bot">{{x.name}}</div>
-                    </div>
-                    <div class="tip2">
-                      {{x.mContent}}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!---->
-            </div>
-            <!---->
-          </div>
-        </a>
+        <div style="text-align:center;position:relative;" class="ttjcfx">
+          <img src="../../static/images/tt.png" alt="" style="width:100%;height:500px;">
+          <span>头侧歪:{{shape.headCoronalMain}}</span>
+          <span>头前倾:{{shape.headForeMain}}</span>
+          <span>驼背:{{shape.humpBackMain}}</span>
+          <span>骨盆:{{shape.pelvisPitchMain}}</span>
+          <span>肩:{{shape.shoulderCoronalMain}}</span>
+          <span>躯干:{{shape.bodyCenterMain}}</span>
+          <span>腿型:{{shape.legXoMain}}</span>
+        </div>
       </div>
-      <!-- 风险预测 -->
+      <!--综合得分-->
       <div class="page-part">
+        <div class="test">
+          <div class="title">身体姿态评估</div>
+          <div class="">
+            <div class="cont flex" id="flex1" style="margin-top: 15px; margin-bottom: 15px;">
+              <div v-for="(item,n) in pgData" :key="n" @click="chooseThis(item)">
+                <img :src="item.val" alt=""></div>
+            </div>
+            <div class="matBox" v-for="(x , index) in mainContent">
+              <div class="tip1">
+                <div class="bot">{{x.name}}</div>
+              </div>
+              <div class="tip2">
+                {{x.mContent}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="page-part">
+        <div class="test">
+          <div class="title">3D骨骼及肌筋膜状况</div>
+          <div class="">
+            <div class="cont flex" id="flex2" style="margin-top: 15px; margin-bottom: 15px;">
+              <div v-for="(item,n) in pgData1" :key="n" @click="chooseThis2(item)">
+                <img :src="item.val" alt=""></div>
+            </div>
+            <div class="matBox" v-for="x in pgData2">
+              <div class="tip1">
+                <div class="bot">{{x.name}}</div>
+              </div>
+              <div class="tip2">
+                {{x.mContent}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 风险预测 -->
+      <div class="page-part" style="margin-bottom: 20px;">
         <!--<mt-cell title="风险预测"></mt-cell>-->
         <div class="titleBox">
           风险预测
@@ -341,102 +261,7 @@
         </a>
 
       </div>
-      <!-- 足弓发育分析 -->
-      <!-- <div class="page-part">
-         <mt-cell title="足弓发育分析"></mt-cell>
-         <a class="mint-cell">
-           &lt;!&ndash;&ndash;&gt;
-           <div class="mint-cell-left"></div>
-           <div class="mint-cell-wrapper">
-             <div class="mint-cell-title">
-               &lt;!&ndash;足弓发育分析&ndash;&gt;
-               <div class="test">
 
-                 &lt;!&ndash;<div class="wrap" id="img3">
-                   <img src="../../static/images/1.jpg" alt="">
-                   <p>{{}}</p>
-                 </div>&ndash;&gt;
-                 <div class="cont flex" id="flex3">
-                   <div v-for="(item,n) in pgData3" :key="n">
-                     <img :src="item.val" alt=""></div>
-                 </div>
-                 <div class="cont">
-                   <div class="black-bold">结果分析：扁平足</div>
-                   <p>定义：足弓是人类脚的重要结构，通常表现为头部相应肩膀往前移动，经常出现于面对电脑工作者，坐姿不正确久坐者，经常使用手机者，不良体态的人群中。</p>
-                   <p>危害：一骨盆长时间前倾，不但影响美观，严重会加重下背部及颈部的负担，造成疼痛和肩颈酸痛等问题。</p>
-
-                 </div>
-
-               </div>
-               &lt;!&ndash;&ndash;&gt;
-             </div>
-             &lt;!&ndash;&ndash;&gt;
-           </div>
-         </a>
-       </div>-->
-      <!--  &lt;!&ndash; 动能分析 &ndash;&gt;
-        <div class="page-part">
-          <a class="mint-cell">
-            <div class="mint-cell-left"></div>
-            <div class="mint-cell-wrapper">
-              <div class="mint-cell-title">
-                &lt;!&ndash;运动能力分析&ndash;&gt;
-                <div class="test">
-                  <div class="title">动能分析</div>
-                  <div class="cont">
-                    <div class="data-analysis">
-
-                      <div class="height">
-                        <div class="red">超弱</div>
-                        <div class="purple">偏弱</div>
-                        <div class="blue">正常</div>
-                        <div class="green">偏强</div>
-                        <div class="yellow">极高</div>
-                        <i style="left:50%"></i>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        &lt;!&ndash; 心率分析 &ndash;&gt;
-        <div class="page-part">
-          <mt-cell title="心率分析（bpm）"></mt-cell>
-          <a class="mint-cell">
-            <div class="mint-cell-left"></div>
-            <div class="mint-cell-wrapper">
-              <div class="mint-cell-title">
-                &lt;!&ndash;运动能力分析&ndash;&gt;
-                <div class="test">
-                  <div class="cont">
-                    <ve-line :data="heartData" :settings="heartSettings"></ve-line>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        &lt;!&ndash; 结果分析 &ndash;&gt;
-        <div class="page-part">
-          <mt-cell title="结果分析"></mt-cell>
-          <a class="mint-cell">
-            <div class="mint-cell-left"></div>
-            <div class="mint-cell-wrapper">
-              <div class="mint-cell-title">
-                &lt;!&ndash;报告总结&ndash;&gt;
-                <div class="test">
-                  <div class="cont">
-                    <p>定义：头前倾也叫头部前引，通常表现为头部相应肩膀往前移动，经常出现于面对电脑工作者，坐姿不正确久坐者，经常使用手机者，不良体态的人群中。</p>
-                    <p>危害：一骨盆长时间前倾，不但影响美观，严重会加重下背部及颈部的负担，造成疼痛和肩颈酸痛等问题。</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>-->
     </div>
     <div class="article_list">
       <h1>推荐文章</h1>
@@ -721,9 +546,15 @@
         let min = Number(num1)
         let max = Number(num2)
         if (max <= min) return
+        if (num3 >= num2) {
+          return '94%'
+        }
         let a = ((max - min) / 6).toFixed(2)  // 平均值
         let b = 16.66
-        let d = 8.33
+        let d = 8.33/2
+//        if (a < d) {
+//          d = 1
+//        }
         for (let x = 0; x < 6; x++) {
           let c = min + (a * x)
           if (c >= num3) {
@@ -735,7 +566,6 @@
               return '94%'
               break
             }
-            //  let e = b * x - d
             return b * x - d + '%'
             break
           }
@@ -997,16 +827,17 @@
   .page-part {
     /* margin-bottom: 20px;*/
     border-radius: 10px;
-    margin: 10px;
+    margin: 20px 10px 0 10px;
+    box-shadow: 0 0 10px 5px #ccc;
     //  background: #cccccc;
-    .titleBox{
+    .titleBox {
       color: #ffffff;
       font-size: 16px;
       margin-top: 15px;
       font-weight: bold;
       background: #0089dc;
       line-height: 40px;
-      border-radius: 20px 20px 0 0;
+      border-radius: 10px 10px 0 0;
       padding-left: 20px;
       margin-bottom: 15px;
     }
@@ -1173,6 +1004,7 @@
   /*体态检测分析*/
   .test {
     line-height: 28px;
+    padding-bottom: 10px;
     // padding-bottom: 20px;
     .title {
       color: #ffffff;
@@ -1181,7 +1013,7 @@
       font-weight: bold;
       background: #0089dc;
       line-height: 40px;
-      border-radius: 20px 20px 0 0;
+      border-radius: 10px 10px 0 0;
       padding-left: 20px;
     }
     .cont {
@@ -1212,10 +1044,12 @@
     }
     .matBox {
       margin-bottom: 15px;
+      margin-left: 5px;
+      margin-right: 5px;
       .tip1 {
         height: 34px;
         background: #66c1ff;
-        border-radius: 20px 20px 0 0; //0 20px 0 20px;
+        border-radius: 5px 5px 0 0; //0 20px 0 20px;
         text-align: center;
         .bot {
           display: inline-block;
@@ -1227,7 +1061,7 @@
       }
       .tip2 {
         background: #eaeaea;
-        border-radius: 0 0 20px 20px;
+        border-radius: 0 0 5px 5px;
         font-size: 12px;
         color: #5a5a5a;
         padding: 10px;
@@ -1542,7 +1376,7 @@
       flex-flow: nowrap;
       width: 100%;
       //   height: 100px;
-     // border: 1px dashed #000000;
+      // border: 1px dashed #000000;
       border-radius: 5px;
       padding: 30px 10px 10px 10px;
       margin-bottom: 10px;
@@ -1589,11 +1423,11 @@
         flex-flow: nowrap;
         align-self: center;
         position: relative;
-        padding-left: 10px;
+      //  padding-left: 10px;
         .result-box {
           position: absolute;
           top: -25px;
-          left: 20%;
+          // left: 20%;
           text-align: center;
           .icon {
             display: inline-block;
