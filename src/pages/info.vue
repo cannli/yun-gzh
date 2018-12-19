@@ -545,176 +545,160 @@
       leftFn(num1, num2, num3) {
         let min = Number(num1)
         let max = Number(num2)
+        let val3 = Number(num3)
         if (max <= min) return
-        if (num3 >= num2) {
+        if (val3 >= max) {
           return '94%'
         }
-        let a = ((max - min) / 6).toFixed(2)  // 平均值
-        let b = 16.66
-        let d = 8.33/2
-//        if (a < d) {
-//          d = 1
-//        }
-        for (let x = 0; x < 6; x++) {
-          let c = min + (a * x)
-          if (c >= num3) {
-            if (x === 0) {
-              return '0%'
-              break
-            }
-            if (x === 6) {
-              return '94%'
-              break
-            }
-            return b * x - d + '%'
-            break
-          }
+        if (val3 <= min) {
+          return '-3.84%'
         }
-
-      },
-      showFn() {
-        this.isLoading = false
-      },
-      // 根据小孩ID获取小孩体检里面的详情
-      examdetail() {
-        let self = this
-        let params = {
-          id: self.babyId,
-          custCode: self.custCode
-        }
-        self.$fetch.dataApi.examdetail(params).then(({data, msg, total}) => {
-          self.detail = {
-            name: data.student.username,
-            cTime: data.studentExamRecord.createTime,
-            ranking: data.studentExamRecord.ranking,
-            height: data.height.height,
-            weight: data.weight.weight,
-            bmi: data.bmi.bmiNum,
-            examNum: data.studentExam.examNum,
-            headImg: data.student.headImg ? data.student.headImg : '../assets/images/xl.jpg',
-            // weight
-            wMin: data.weight.min,
-            wMax: data.weight.max,
-            wAvg: data.weight.avg,
-            // height
-            hMin: data.height.min,
-            hMax: data.height.max,
-            hAvg: data.height.avg,
-            // bmi
-            bMin: data.bmi.min,
-            bMax: data.bmi.max,
-            bAvg: self.isNull(data.bmi.avg, 1),
-
-          }
-          self.shape = {
-            bodyCenterMain: data.studentExamRecord.bodyCenterMain,
-            headCoronalMain: data.studentExamRecord.headCoronalMain,
-            headForeMain: data.studentExamRecord.headForeMain,
-            humpBackMain: data.studentExamRecord.humpBackMain,
-            legXoMain: data.studentExamRecord.legXoMain,
-            pelvisPitchMain: data.studentExamRecord.pelvisPitchMain,
-            shoulderCoronalMain: data.studentExamRecord.shoulderCoronalMain,
-          }
-          // self.mainContent = JSON.parse(data.studentExamRecord.mainContent)
-          self.mainContent = [
-            {name: data.studentExamRecord.headCoronal, mContent: data.studentExamRecord.headCoronalDes},
-            {name: data.studentExamRecord.humpBack, mContent: data.studentExamRecord.humpBackDes},
-            {name: data.studentExamRecord.pelvisPitch, mContent: data.studentExamRecord.pelvisPitchDes},
-            {name: data.studentExamRecord.legXo, mContent: data.studentExamRecord.legXoDes},
-          ]
-          self.pgData = [
-            {key: '正面', val: data.studentExamRecord.frontImageUrl},
-            {key: '反面', val: data.studentExamRecord.behindImageUrl},
-            {key: '左侧面', val: data.studentExamRecord.leftImageUrl},
-            {key: '右侧面', val: data.studentExamRecord.rightImageUrl}
-          ]
-
-
-          self.pgData1 = [
-            {key: '正面', val: data.studentExamRecord.frontPerImageUrl},
-            {key: '反面', val: data.studentExamRecord.behindPerImageUrl}
-          ]
-          self.pgData2 = JSON.parse(data.studentExamRecord.mainContent)
-          /* [
-          {
-            title: '头颈部：',
-            val: data.studentExamRecord.humpBack,
-            text: data.studentExamRecord.humpBackDes.split('：')[1]
-          },
-          {
-            title: '肩部：',
-            val: data.studentExamRecord.headCoronal,
-            text: data.studentExamRecord.headCoronalDes.split('：')[1]
-          },
-          {title: '躯干：', val: '', text: '暂无数据'},
-          {title: '腰部：', val: '', text: data.studentExamRecord.pelvisPitchDes},
-          {title: '腿部：', val: '', text: data.studentExamRecord.legXoDes},
-          {title: '肌肉状态：', val: '', text: data.studentExamRecord.muscleDes},
-        ]*/
-          // 获取风险数据
-          self.postureData = {
-            columns: ['体态', '第一次'],
-            rows: [
-              {体态: '颈椎退化', 第一次: data.studentExamRecord.lumbago},
-              {体态: '骨刺', 第一次: data.studentExamRecord.dizzy},
-              {体态: '头痛', 第一次: data.studentExamRecord.headache},
-              {体态: '头晕', 第一次: data.studentExamRecord.hemp},
-              {体态: '手脚麻', 第一次: data.studentExamRecord.cervicalDege},
-              {体态: '便秘', 第一次: data.studentExamRecord.nsPain},
-              {体态: '颈肩痛', 第一次: data.studentExamRecord.spur},
-
-              {体态: '背痛', 第一次: data.studentExamRecord.constipation},
-              {体态: '腰痛', 第一次: data.studentExamRecord.backache},
-              {体态: '腰椎间盘突出', 第一次: data.studentExamRecord.ringEar},
-              {体态: '膝关节痛', 第一次: data.studentExamRecord.deforeSpine},
-              {体态: '胸闷气短', 第一次: data.studentExamRecord.chronicStrain},
-              {体态: '失眠', 第一次: data.studentExamRecord.lumbaDisk},
-
-
-              {体态: '脊柱变形', 第一次: data.studentExamRecord.physicalFatigue},
-              {体态: '慢性劳损', 第一次: data.studentExamRecord.kjPain},
-              {体态: '眼睛干涩', 第一次: data.studentExamRecord.dryEye},
-              {体态: '身体疲倦', 第一次: data.studentExamRecord.insomnia},
-              {体态: '耳鸣', 第一次: data.studentExamRecord.shortBreath},
-            ]
-          }
-          console.log(self.pgData, '88888888888')
-        }).catch(() => {
-          self.$indicator.close()
-        })
-      },
-      handleScroll(el) {
-        this.scrollTop = this.$refs.content.scrollTop //打印出来就是滚动条距离页面的距离
-      },
-      chooseThis(item) {
-        /* let wImg = document.querySelectorAll('#img1 img')
-         let wP = document.querySelectorAll('#img1 p')
-         let imgBox = document.querySelectorAll('#flex1 div')
-         wImg[0].setAttribute('src', item.val)
-         wP[0].text = item.key
-         for (let i = 0; i < imgBox.length; i++) {
-           imgBox[i].classList.remove('cur')
-         }
-         event.currentTarget.classList.add('cur')*/
-        this.isLoading = true
-        this.imgUrl = item.val
-      },
-      chooseThis2(item) {
-        this.isLoading = true
-        this.imgUrl = item.val
-      },
-      // 根据小孩ID获取小孩体检里面的详情
-      _recommendArticleList() {
-        let self = this
-        let params = {
-          id: self.babyId,
-          custCode: self.custCode
-        }
-        self.$fetch.dataApi.recommendArticleList(params).then(({data, msg, total}) => {
-          self.rticleList = data
-        })
+        let a = max - min
+        let c = ((val3 - min) / a * 100 - 3.84) + '%'
+    },
+    showFn() {
+      this.isLoading = false
+    },
+    // 根据小孩ID获取小孩体检里面的详情
+    examdetail() {
+      let self = this
+      let params = {
+        id: self.babyId,
+        custCode: self.custCode
       }
+      self.$fetch.dataApi.examdetail(params).then(({data, msg, total}) => {
+        self.detail = {
+          name: data.student.username,
+          cTime: data.studentExamRecord.createTime,
+          ranking: data.studentExamRecord.ranking,
+          height: data.height.height,
+          weight: data.weight.weight,
+          bmi: data.bmi.bmiNum,
+          examNum: data.studentExam.examNum,
+          headImg: data.student.headImg ? data.student.headImg : '../assets/images/xl.jpg',
+          // weight
+          wMin: data.weight.min,
+          wMax: data.weight.max,
+          wAvg: data.weight.avg,
+          // height
+          hMin: data.height.min,
+          hMax: data.height.max,
+          hAvg: data.height.avg,
+          // bmi
+          bMin: data.bmi.min,
+          bMax: data.bmi.max,
+          bAvg: self.isNull(data.bmi.avg, 1),
+
+        }
+        self.shape = {
+          bodyCenterMain: data.studentExamRecord.bodyCenterMain,
+          headCoronalMain: data.studentExamRecord.headCoronalMain,
+          headForeMain: data.studentExamRecord.headForeMain,
+          humpBackMain: data.studentExamRecord.humpBackMain,
+          legXoMain: data.studentExamRecord.legXoMain,
+          pelvisPitchMain: data.studentExamRecord.pelvisPitchMain,
+          shoulderCoronalMain: data.studentExamRecord.shoulderCoronalMain,
+        }
+        // self.mainContent = JSON.parse(data.studentExamRecord.mainContent)
+        self.mainContent = [
+          {name: data.studentExamRecord.headCoronal, mContent: data.studentExamRecord.headCoronalDes},
+          {name: data.studentExamRecord.humpBack, mContent: data.studentExamRecord.humpBackDes},
+          {name: data.studentExamRecord.pelvisPitch, mContent: data.studentExamRecord.pelvisPitchDes},
+          {name: data.studentExamRecord.legXo, mContent: data.studentExamRecord.legXoDes},
+        ]
+        self.pgData = [
+          {key: '正面', val: data.studentExamRecord.frontImageUrl},
+          {key: '反面', val: data.studentExamRecord.behindImageUrl},
+          {key: '左侧面', val: data.studentExamRecord.leftImageUrl},
+          {key: '右侧面', val: data.studentExamRecord.rightImageUrl}
+        ]
+
+
+        self.pgData1 = [
+          {key: '正面', val: data.studentExamRecord.frontPerImageUrl},
+          {key: '反面', val: data.studentExamRecord.behindPerImageUrl}
+        ]
+        self.pgData2 = JSON.parse(data.studentExamRecord.mainContent)
+        /* [
+        {
+          title: '头颈部：',
+          val: data.studentExamRecord.humpBack,
+          text: data.studentExamRecord.humpBackDes.split('：')[1]
+        },
+        {
+          title: '肩部：',
+          val: data.studentExamRecord.headCoronal,
+          text: data.studentExamRecord.headCoronalDes.split('：')[1]
+        },
+        {title: '躯干：', val: '', text: '暂无数据'},
+        {title: '腰部：', val: '', text: data.studentExamRecord.pelvisPitchDes},
+        {title: '腿部：', val: '', text: data.studentExamRecord.legXoDes},
+        {title: '肌肉状态：', val: '', text: data.studentExamRecord.muscleDes},
+      ]*/
+        // 获取风险数据
+        self.postureData = {
+          columns: ['体态', '第一次'],
+          rows: [
+            {体态: '颈椎退化', 第一次: data.studentExamRecord.lumbago},
+            {体态: '骨刺', 第一次: data.studentExamRecord.dizzy},
+            {体态: '头痛', 第一次: data.studentExamRecord.headache},
+            {体态: '头晕', 第一次: data.studentExamRecord.hemp},
+            {体态: '手脚麻', 第一次: data.studentExamRecord.cervicalDege},
+            {体态: '便秘', 第一次: data.studentExamRecord.nsPain},
+            {体态: '颈肩痛', 第一次: data.studentExamRecord.spur},
+
+            {体态: '背痛', 第一次: data.studentExamRecord.constipation},
+            {体态: '腰痛', 第一次: data.studentExamRecord.backache},
+            {体态: '腰椎间盘突出', 第一次: data.studentExamRecord.ringEar},
+            {体态: '膝关节痛', 第一次: data.studentExamRecord.deforeSpine},
+            {体态: '胸闷气短', 第一次: data.studentExamRecord.chronicStrain},
+            {体态: '失眠', 第一次: data.studentExamRecord.lumbaDisk},
+
+
+            {体态: '脊柱变形', 第一次: data.studentExamRecord.physicalFatigue},
+            {体态: '慢性劳损', 第一次: data.studentExamRecord.kjPain},
+            {体态: '眼睛干涩', 第一次: data.studentExamRecord.dryEye},
+            {体态: '身体疲倦', 第一次: data.studentExamRecord.insomnia},
+            {体态: '耳鸣', 第一次: data.studentExamRecord.shortBreath},
+          ]
+        }
+        console.log(self.pgData, '88888888888')
+      }).catch(() => {
+        self.$indicator.close()
+      })
+    },
+    handleScroll(el) {
+      this.scrollTop = this.$refs.content.scrollTop //打印出来就是滚动条距离页面的距离
+    },
+    chooseThis(item) {
+      /* let wImg = document.querySelectorAll('#img1 img')
+       let wP = document.querySelectorAll('#img1 p')
+       let imgBox = document.querySelectorAll('#flex1 div')
+       wImg[0].setAttribute('src', item.val)
+       wP[0].text = item.key
+       for (let i = 0; i < imgBox.length; i++) {
+         imgBox[i].classList.remove('cur')
+       }
+       event.currentTarget.classList.add('cur')*/
+      this.isLoading = true
+      this.imgUrl = item.val
+    },
+    chooseThis2(item) {
+      this.isLoading = true
+      this.imgUrl = item.val
+    },
+    // 根据小孩ID获取小孩体检里面的详情
+    _recommendArticleList() {
+      let self = this
+      let params = {
+        id: self.babyId,
+        custCode: self.custCode
+      }
+      self.$fetch.dataApi.recommendArticleList(params).then(({data, msg, total}) => {
+        self.rticleList = data
+      })
     }
+  }
   }
 </script>
 
@@ -1423,7 +1407,7 @@
         flex-flow: nowrap;
         align-self: center;
         position: relative;
-      //  padding-left: 10px;
+        //  padding-left: 10px;
         .result-box {
           position: absolute;
           top: -25px;
