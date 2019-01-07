@@ -86,19 +86,19 @@
               </div>
               <div class="item item1">
                 <div class="tip tip1"></div>
-                <div class="icon icon1"></div>
+              <!--  <div class="icon icon1"></div>-->
                 <div class="data data-min">{{detail.hMin}}</div>
                 <div class="data data-min">同龄最小值</div>
               </div>
               <div class="item item2">
                 <div class="tip tip2"></div>
-                <div class="icon icon2"></div>
+             <!--   <div class="icon icon2" style="border: #ffffff;"></div>-->
                 <div class="data data-center">{{detail.hAvg}}</div>
                 <div class="data data-center">同龄平均值</div>
               </div>
               <div class="item item3">
                 <div class="tip tip3"></div>
-                <div class="icon icon3"></div>
+               <!-- <div class="icon icon3"></div>-->
                 <div class="data data-max">{{detail.hMax}}</div>
                 <div class="data data-max">同龄最大值</div>
               </div>
@@ -124,19 +124,19 @@
               </div>
               <div class="item item1">
                 <div class="tip tip1"></div>
-                <div class="icon icon1"></div>
+              <!--  <div class="icon icon1"></div>-->
                 <div class="data data-min">{{detail.wMin}}</div>
                 <div class="data data-min">同龄最小值</div>
               </div>
               <div class="item item2">
                 <div class="tip tip2"></div>
-                <div class="icon icon2"></div>
+              <!--  <div class="icon icon2" style="border: #ffffff;"></div>-->
                 <div class="data data-center">{{detail.wAvg}}</div>
                 <div class="data data-center">同龄平均值</div>
               </div>
               <div class="item item3">
                 <div class="tip tip3"></div>
-                <div class="icon icon3"></div>
+         <!--       <div class="icon icon3"></div>-->
                 <div class="data data-max">{{detail.wMax}}</div>
                 <div class="data data-max">同龄最大值</div>
               </div>
@@ -162,19 +162,19 @@
               </div>
               <div class="item item1">
                 <div class="tip tip1"></div>
-                <div class="icon icon1"></div>
+             <!--   <div class="icon icon1"></div>-->
                 <div class="data data-min">{{detail.bMin}}</div>
                 <div class="data data-min">同龄最小值</div>
               </div>
               <div class="item item2">
                 <div class="tip tip2"></div>
-                <div class="icon icon2"></div>
+             <!--   <div class="icon icon2" style="border: #ffffff;"></div>-->
                 <div class="data data-center">{{detail.bAvg}}</div>
                 <div class="data data-center">同龄平均值</div>
               </div>
               <div class="item item3">
                 <div class="tip tip3"></div>
-                <div class="icon icon3"></div>
+             <!--   <div class="icon icon3"></div>-->
                 <div class="data data-max">{{detail.bMax}}</div>
                 <div class="data data-max">同龄最大值</div>
               </div>
@@ -551,10 +551,10 @@
           return '94%'
         }
         if (val3 <= min) {
-          return '-3.84%'
+          return '-4%'
         }
         let a = max - min
-        let c = ((val3 - min) / a * 100 - 3.84) + '%'
+        let c = ((val3 - min) / a * 100 - 3) + '%'
         return c
       },
       showFn() {
@@ -570,7 +570,7 @@
         self.$fetch.dataApi.examdetail(params).then(({data, msg, total}) => {
           self.detail = {
             name: data.student.username,
-            cTime: data.studentExamRecord.createTime,
+            cTime: data.student.birth,
             ranking: data.studentExamRecord.ranking,
             height: data.height.height,
             weight: data.weight.weight,
@@ -1408,7 +1408,8 @@
         flex-flow: nowrap;
         align-self: center;
         position: relative;
-        //  padding-left: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
         .result-box {
           position: absolute;
           top: -25px;
@@ -1443,20 +1444,23 @@
             position: relative;
             top: -5px;
             display: inline-block;
-            border-style: solid;
-            border-width: 5px 5px 5px 5px;
-            border-color: transparent transparent blue transparent;
-            width: 0;
-            height: 0;
+            /*border-style: solid;*/
+            /*border-width: 5px 5px 5px 5px;*/
+            /*border-color: transparent transparent blue transparent;*/
+            width: 8px;
+            border: 2px solid #ffffff;
+           // width: 0;
+          //  height: 0;
           }
           .icon1 {
-            left: 3px;
+           // left: 3px;
           }
           .icon3 {
-            right: 3px;
+         //   right: 3px;
           }
           .data {
             font-size: 12px;
+            margin-top: 6px;
           }
           .tip1 {
             height: 5px;

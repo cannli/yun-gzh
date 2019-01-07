@@ -50,7 +50,7 @@
     },
     created() {
      let obj = window.localStorage.getItem('tokenId')
-    //  let obj = 'eyJhbGciOiJIUzI1NiJ9..'
+    //  let obj = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI2NTVkMDBlZC03MTVmLTQ2NGItYmFiMS04Y2FkMTAwYzNlMzQiLCJpYXQiOjE1NDY4NzIzNTAsInN1YiI6IntcImhlYWRJbWdcIjpcImh0dHA6Ly90aGlyZHd4LnFsb2dvLmNuL21tb3Blbi92aV8zMi8yNGdNeWlibWdTbzJuUFM1eExycUdzVFRXb2lhN1BZaWNpYk1pYzd4eWM2ZnBpYTEzNTZOQW05WVQ4YURJN2VUQU5IVzlpY2s1a3czMXZpY3ZzaE5pYlZyWWE4SGdMdy8xMzJcIixcIm5pY2tOYW1lXCI6XCLmmq7kupFcIixcInNleFwiOlwiMVwiLFwiaWRcIjo2OTEsXCJ1c2VyVHlwZVwiOlwiMVwifSIsImV4cCI6MTU0NjkxNTU1MH0.McIZuLVqpUd446vUZ3cwUnTQzPOFrti3bl7JTCtlneU'
       this.set_user_info({
         user: obj,
         //  login: obj.isbindPhone

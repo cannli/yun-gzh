@@ -132,7 +132,7 @@
           parentPhone: data.parentPhone
         }
         this.$fetch.dataApi.submit(params).then(({data}) => {
-          this.$router.push("/babyManage");
+          this.$router.push("/home");
         }).catch((data) => {
           Toast({
             message: data.msg,
