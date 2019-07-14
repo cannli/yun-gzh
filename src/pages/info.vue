@@ -278,6 +278,17 @@
         </div>
       </a>
     </div>
+
+    <div class="article_list">
+     <!-- <h1>声明</h1>-->
+      <a class="list_item js_post" v-for="(x,index) in rticleList" :key="index"
+         :href="x.articleUrl">
+
+        <div class="cont" style="font-size: 12px; color: #999; line-height: 14px;">
+          声明:&nbsp;&nbsp;本次检测结果不作为医疗诊断结果，仅供在日常行为习惯纠偏等教育方面具有重要参考意义。同时因设备偏差和群体检测的局限性，检测结果精准度受站姿、衣服宽松度等多种因素影响，如需更精准判断，需结合平台说明进行观察或专业医院咨询。如需了解更多详情请通过成长云微信公众号和020-85588650客服电话（工作日9：00~18：00）咨询反馈，我们将竭诚为您服务。
+        </div>
+      </a>
+    </div>
     <copy-right></copy-right>
     <imgCarousel :isLoading="isLoading" :imgUrl="imgUrl" @showFn="showFn"></imgCarousel>
   </div>
